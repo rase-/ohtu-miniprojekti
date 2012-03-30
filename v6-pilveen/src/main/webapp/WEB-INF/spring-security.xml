@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/security 
+            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <!-- osoitteiden rajoitus -->
+    <http use-expressions="true">
+        <intercept-url pattern="/admin/**" access="hasRole('lecturer') or hasRole('assistant')" />
+        <intercept-url pattern="/student/**" access="hasRole('student')" />
+        <intercept-url pattern="/**" access="permitAll" />
+        
+        <!-- huom! kun teet sovellusta tuotantokäyttöä varten, permitAll-oletus ei ole hyvä idea! /** -->
+        
+        <!-- näytä kirjautumislomake tarvittaessa -->
+        <form-login />
+        <!-- mahdollisuus logouttiin, ohjaus logoutin jälkeen osoitteeseen /home -->
+        <logout logout-success-url="/home" />
+    </http>
+    
+    <!-- käyttäjät kannasta -->
+    <authentication-manager>
+        <authentication-provider user-service-ref="wadUserDetailsService" />
+    </authentication-manager>
+</beans:beans>
