@@ -26,4 +26,10 @@ public class ReferenceServiceImpl implements ReferenceService {
         repo.save(reference);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Reference> listAllReferences() {
+        return repo.findAll();
+    }
+
 }
