@@ -12,5 +12,5 @@ import wad.spring.domain.Reference;
  * @author tonykova
  */
 public interface ReferenceRepository extends JpaRepository<Reference, Long> {
-    Reference findByName(String name);
+    Reference findByAuthor(String author);
 }
