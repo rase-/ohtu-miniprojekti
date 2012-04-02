@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package wad.spring.service;
 
 import java.util.List;
@@ -17,19 +13,26 @@ import wad.spring.repository.ReferenceRepository;
  */
 @Service
 public class ReferenceServiceImpl implements ReferenceService {
+
     @Autowired
-    ReferenceRepository repo;
-    
+    ReferenceRepository referenceRepository;
+
     @Override
     @Transactional
     public void addReference(Reference reference) {
-        repo.save(reference);
+        referenceRepository.save(reference);
+    }
+
+    @Override
+    @Transactional
+    public void deleteReference(Long id) {
+        referenceRepository.delete(id);
+
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Reference> listAllReferences() {
-        return repo.findAll();
+        return referenceRepository.findAll();
     }
-
 }
