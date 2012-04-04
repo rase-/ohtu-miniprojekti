@@ -56,5 +56,11 @@ public class ReferenceController {
         
         return "redirect:/home";
     }
+    
+    @RequestMapping(value = "reference/all", method = RequestMethod.GET)
+    public String showReferences(Model model) {
+        model.addAttribute("references", referenceService.listAllReferences());
+        return "listAll";
+    }    
    
 }

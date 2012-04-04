@@ -9,8 +9,6 @@
     <body>
         <h1>Le home de Arto Vihavainen.</h1>
         <p>Click <a href="<c:url value="/reference"/>">here</a> to add a reference</p>
-        <c:forEach var="reference" items="${references}">
-            <p>${reference.type}: Author: ${reference.author}, Title: ${reference.title}, Year: ${reference.publishingYear}, Publisher: ${reference.publisher}, Pages: ${reference.pages}, Address: ${reference.address}, Journal: ${reference.journal}, Volume: ${reference.volume}, Number: ${reference.number}</p>
-        </c:forEach>
+        <p>Click <a href="<c:url value="/reference/all"/>">here</a> to list all references</p>   
     </body>
 </html>
