@@ -12,7 +12,7 @@
     <properties>
         <spring-version>3.1.0.RELEASE</spring-version>
         <spring-data-version>1.0.3.RELEASE</spring-data-version>
-        
+        <easyb.version>1.5</easyb.version>
         <eclipselink-version>2.3.2</eclipselink-version>
         <eclipselink-jpa-version>2.0.0</eclipselink-jpa-version>
         <hsqldb-version>1.8.0.10</hsqldb-version>
@@ -23,6 +23,13 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.easyb</groupId>
+            <artifactId>easyb-core</artifactId>
+            <version>${easyb.version}</version>
+            <scope>test</scope>        
+        </dependency>   
+              
     <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -121,10 +128,10 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>2.13.0</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         
-
+        
         <!-- servlet ja jsp api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -396,6 +403,26 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+                <groupId>org.easyb</groupId>
+                <artifactId>maven-easyb-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <storyType>html</storyType>
+                    <storyReport>${basedir}/target/easyb/easyb-report.html
+                    </storyReport>
+                </configuration>
+            </plugin>                  
+            
         </plugins>
     </build>
 </project>
