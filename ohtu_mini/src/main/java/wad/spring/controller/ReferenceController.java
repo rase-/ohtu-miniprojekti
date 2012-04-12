@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package wad.spring.controller;
 
 import javax.validation.Valid;
@@ -50,11 +47,10 @@ public class ReferenceController {
         return "reference";
     }
     
-    @RequestMapping(value="reference/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="deleteReference/{id}")
     public String deleteReference(@PathVariable Long id){
        referenceService.deleteReference(id);
-        
-        return "redirect:/home";
+       return "redirect:/home";
     }
     
     @RequestMapping(value = "reference/all", method = RequestMethod.GET)
