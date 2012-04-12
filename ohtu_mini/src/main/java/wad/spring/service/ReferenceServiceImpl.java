@@ -14,8 +14,18 @@ import wad.spring.repository.ReferenceRepository;
 @Service
 public class ReferenceServiceImpl implements ReferenceService {
 
-    @Autowired
+    
     ReferenceRepository referenceRepository;
+    
+    public ReferenceServiceImpl() {
+        
+    }
+    
+    @Autowired
+    public ReferenceServiceImpl(ReferenceRepository referenceRepository) {
+        this.referenceRepository = referenceRepository;
+    }
+    
 
     @Override
     @Transactional
