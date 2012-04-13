@@ -11,7 +11,7 @@
         <p>Click <a href="<c:url value="/reference"/>">here</a> to add a reference</p>
         <c:forEach var="reference" items="${references}">
             <p>${reference.type}: Author: ${reference.author}, Title: ${reference.title}, Year: ${reference.publishingYear}, Publisher: ${reference.publisher}, 
-                Pages: ${reference.pages}, Address: ${reference.address}, Journal: ${reference.journal}, Volume: ${reference.volume}, Number: ${reference.number}, <a href="deleteReference/${reference.id}">poista</a><
+                Pages: ${reference.pages}, Address: ${reference.address}, Journal: ${reference.journal}, Volume: ${reference.volume}, Number: ${reference.number}, <a href="deleteReference/${reference.id}">poista</a>
                 
             </p>
         </c:forEach>
