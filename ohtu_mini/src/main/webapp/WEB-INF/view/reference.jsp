@@ -25,7 +25,7 @@
             Journal: <form:input path="journal" /><form:errors path="journal" /><br/>
             Volume: <form:input path="volume" /><form:errors path="volume" /><br/>
             Number: <form:input path="number" /><form:errors path="number" /><br/>
-            <input type="submit">
+            <input name="submit" type="submit" value="submit" />
         </form:form>
     </body>
 </html>

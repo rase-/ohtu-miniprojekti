@@ -7,11 +7,14 @@
         <title>The Vihavainen BibTeX service</title>
     </head>
     <body>
-        <h1>Le home de Arto Vihavainen.</h1>
-        <p>Click <a href="<c:url value="/reference"/>">here</a> to add a reference</p>
+        <h1>The Vihavainen BibTeX - Reference service -- Le Home de Arto Vihavainen</h1>
+        <p><a href="<c:url value="/reference"/>">Add</a> a reference</p>
+        <p><a href="<c:url value="/reference/all"/>">List all</a> references</p> 
         <c:forEach var="reference" items="${references}">
-            <p>${reference.type}: Author: ${reference.author}, Title: ${reference.title}, Year: ${reference.publishingYear}, Publisher: ${reference.publisher}, 
-                Pages: ${reference.pages}, Address: ${reference.address}, Journal: ${reference.journal}, Volume: ${reference.volume}, Number: ${reference.number}, <a href="deleteReference/${reference.id}">poista</a>
+
+            <p>${reference.type}: <c:if test="${not empty reference.author}">Author: ${reference.author}</c:if> <c:if test="${not empty reference.title}">, Title: ${reference.title}</c:if><c:if test="${not empty reference.publishingYear}">, Year: ${reference.publishingYear}</c:if><c:if test="${not empty reference.publisher}">, Publisher: ${reference.publisher}</c:if><c:if test="${not empty reference.pages}">, 
+                    Pages: ${reference.pages}</c:if><c:if test="${not empty reference.address}">, Address: ${reference.address}</c:if><c:if test="${not empty reference.journal}">, Journal: ${reference.journal}</c:if><c:if test="${reference.volume != 0}">, Volume: ${reference.volume}</c:if><c:if test="${reference.number != 0}">, Number: ${reference.number}</c:if> <a href="deleteReference/${reference.id}" id="${reference.author}">poista</a>
+
                 
             </p>
         </c:forEach>
