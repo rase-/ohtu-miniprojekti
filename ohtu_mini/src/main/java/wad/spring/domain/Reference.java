@@ -23,7 +23,7 @@ public class Reference implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private ReferenceType type;
-    @Pattern(regexp="[a-zA-Z'-åöäüÅÄÖÜ ]+", message="There has to be an author and it should contain only letters a-zA-Z'-åöäüÅÄÖÜ")
+    @Pattern(regexp="[^<>$%]+", message="There has to be an author and it should not contain <>$%")
     private String author;
     @NotNull
     @Pattern(regexp="[^<>$%]+", message="There should be a title and it should not contain <>$%")
