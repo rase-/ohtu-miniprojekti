@@ -28,7 +28,7 @@ public class Reference implements Serializable {
     @NotNull
     @Pattern(regexp="[^<>$%]+", message="There should be a title and it should not contain <>$%")
     private String title;
-    @Pattern(regexp="[^<>$%]*", message="Year should not contain <>$%")
+    @Pattern(regexp="([0-9]{4})?", message="Year should contain exactly 4 numbers")
     private String publishingYear;
     @Pattern(regexp="[^<>$%]*", message="Publisher should not contain <>$%")
     private String publisher;
