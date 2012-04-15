@@ -5,7 +5,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 description 'User can create a reference'
 
-serverAddress = "http://localhost:8080";
+serverAddress = "http://localhost:9090";
 
 scenario "deletion successful", {
     given 'delete is selected for first item listed', {

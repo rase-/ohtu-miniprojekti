@@ -365,21 +365,19 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.4.2.v20110526</version>
-                <configuration>  
-                    <stopKey>foo</stopKey>
-                    <stopPort>9999</stopPort>
-                    <webAppConfig>
-                        <contextPath>/</contextPath>
-                    </webAppConfig>
-                 
-         <!--<connectors>
-            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-              <port>9090</port>
-            </connector>
-          </connectors> -->
-        </configuration> 
-                
+                <version>8.1.2.v20120308</version>
+                <configuration>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                        <port>9090</port>
+                        <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <reload>automatic</reload>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <stopKey>stopMaven</stopKey>
+                    <stopPort>9096</stopPort>
+                </configuration>
                 <executions>
                     <execution>
                         <id>start-jetty</id>
@@ -389,10 +387,9 @@
                         </goals>
                         <configuration>
                             <scanIntervalSeconds>0</scanIntervalSeconds>
-                            <daemon>true</daemon>                           
+                            <daemon>true</daemon>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>stop-jetty</id>
                         <phase>post-integration-test</phase>
@@ -400,8 +397,7 @@
                             <goal>stop</goal>
                         </goals>
                     </execution>
-
-                </executions>                
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
