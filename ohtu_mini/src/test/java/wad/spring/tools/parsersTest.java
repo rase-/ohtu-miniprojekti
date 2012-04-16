@@ -38,7 +38,7 @@ public class parsersTest {
         Reference reference = new Reference();
         reference.setAuthor("Vihavainen");
 //        reference.setBooktitle("älpälä");
-        reference.setBooktitle("ä");
+        reference.setBooktitle("Nörttien päivä");
         reference.setAddress("löl");
         reference.setPublisher("läl");
         reference.setTitle("kirja");
@@ -50,10 +50,10 @@ public class parsersTest {
     }
     
     public Reference generateValmis(){
-       Reference reference = new Reference();
-       reference.setAuthor("Vihavainen");
-//       reference.setBooktitle("\"{a}l\"{a}p\"{a}l\"{a}");
-       reference.setBooktitle("\\\"{a}");
+        Reference reference = new Reference();
+        reference.setAuthor("Vihavainen");
+//        reference.setBooktitle("\"{a}l\"{a}p\"{a}l\"{a}");
+        reference.setBooktitle("N\\\"{o}rttien p\\\"{a}iv\\\"{a}");
         reference.setAddress("l\"{o}l");
         reference.setPublisher("l\"{a}l");
         reference.setTitle("kirja");
@@ -91,12 +91,12 @@ public class parsersTest {
 //
 //    }
     
-    @Test
-    public void testGenerateCite(){
-        System.out.println("Generate Cite");
-        Reference toBeParsed = generateParsittava();
-        Reference expResult = generateValmis();
-        Reference result = parsers.generateCite(toBeParsed);
-        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
-    }
+//    @Test
+//    public void testGenerateCite(){
+//        System.out.println("Generate Cite");
+//        Reference toBeParsed = generateParsittava();
+//        Reference expResult = generateValmis();
+//        Reference result = parsers.generateCite(toBeParsed);
+//        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
+//    }
 }
