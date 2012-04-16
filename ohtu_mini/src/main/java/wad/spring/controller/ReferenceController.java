@@ -64,16 +64,16 @@ public class ReferenceController {
     
     @RequestMapping(value = "reference/bibtex", method = RequestMethod.GET)
     public String showBibtexPage(Model model) {
-        model.addAttribute("fileform", new FileForm());
+        model.addAttribute("fileForm", new FileForm());
         return "bibtex";
     }
     
     @RequestMapping(value = "reference/bibtex", method = RequestMethod.POST)
-    public String generateBibtex(@Valid @ModelAttribute FileForm filename, BindingResult result, Model model) {
+    public String generateBibtex(@Valid @ModelAttribute FileForm fileForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "bibtex";
         }
-        model.addAttribute("filename", filename);
+        model.addAttribute("filename", fileForm.getFilename());
         model.addAttribute("bibtex", bibtexService.generateBibtex());
         return "generatedBibtex";
     }
