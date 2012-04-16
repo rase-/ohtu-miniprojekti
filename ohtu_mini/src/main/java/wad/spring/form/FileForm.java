@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
  * @author tonykova
  */
 public class FileForm {
-    @Pattern(regexp="", message="Filename should not contain <>$ or %")
+    @Pattern(regexp="[^<>%$]", message="Filename should not contain <>$ or %")
     private String filename;
 
     public String getFilename() {

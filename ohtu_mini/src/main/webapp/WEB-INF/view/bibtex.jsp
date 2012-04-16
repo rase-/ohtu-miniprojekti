@@ -5,10 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Arto wants to add a reference</title>
+        <title>Generate BibTeX</title>
     </head>
     <body>
-        <h1>Add a reference</h1>
+        <h1>Generate BibTeX</h1>
         <form:form commandName="fileform" action="${pageContext.request.contextPath}/bibtex" method="POST">
             Filename: <form:input path="filename" /><form:errors path="filename" />
             <input name="submit" type="submit" value="submit" />
