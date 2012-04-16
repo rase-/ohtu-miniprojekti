@@ -7,6 +7,7 @@ package wad.spring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wad.spring.repository.ReferenceRepository;
+import wad.spring.tools.parsers;
 
 /**
  *
@@ -19,15 +20,14 @@ public class BibtexServiceImpl implements BibtexService {
     
     @Override
     public String generateBibtex() {
+        
+        parsers.parsePageNumber("trololoo");
+        parsers.parseScandit("trololoo");
         return "trolol";
     }
     
     
-    private String parseScandit(){
-        
-        
-        return "trololoo";
-    }
+   
     
     
 }
