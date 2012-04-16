@@ -10,6 +10,7 @@ public class SeleniumTest {
     
     HtmlUnitDriver driver;
     WebElement element;
+    boolean testable = false;
     public SeleniumTest() {
     }
 
@@ -31,7 +32,7 @@ public class SeleniumTest {
     }
     
     @Test
-    public void testAdd() {
+    public void creationSuccessful() {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/ohtu_mini");
         element = driver.findElement(By.linkText("Add"));
@@ -41,15 +42,85 @@ public class SeleniumTest {
         element = driver.findElement(By.name("title"));
         element.sendKeys("Trolls of Science");
         element = driver.findElement(By.name("submit"));
-        System.out.println("Elementti: "+element);
         element.submit();
-        boolean pekka = driver.getPageSource().contains("pekka");
-        Assert.assertEquals(true, pekka);       
+        testable = driver.getPageSource().contains("pekka");
+        Assert.assertEquals(true, testable);       
     }
     
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void creationNotSuccessfulNoAuthor() {
+        driver = new HtmlUnitDriver();
+        driver.get("http://localhost:8080/ohtu_mini");
+        element = driver.findElement(By.linkText("Add"));
+        element.click();
+        element = driver.findElement(By.name("author"));      
+        element.sendKeys("");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        testable = driver.getPageSource().contains("pekka");
+        Assert.assertEquals(false, testable);       
+    }
+    
+    @Test
+    public void creationNotSuccessfulNoTitle() {
+        driver = new HtmlUnitDriver();
+        driver.get("http://localhost:8080/ohtu_mini");
+        element = driver.findElement(By.linkText("Add"));
+        element.click();
+        element = driver.findElement(By.name("author"));      
+        element.sendKeys("pekka");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        testable = driver.getPageSource().contains("Trolls of Science");
+        Assert.assertEquals(false, testable); 
+    }
+    @Test
+    public void creationSuccessfulWithPages() {
+        driver = new HtmlUnitDriver();
+        driver.get("http://localhost:8080/ohtu_mini");
+        element = driver.findElement(By.linkText("Add"));
+        element.click();
+        element = driver.findElement(By.name("author"));      
+        element.sendKeys("pekka");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("pages"));
+        element.sendKeys("123-456");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        testable = driver.getPageSource().contains("123-456");
+        Assert.assertEquals(true, testable); 
+    }
+        
+    @Test
+    public void creationSuccessfulWithYear() {
+        driver = new HtmlUnitDriver();
+        driver.get("http://localhost:8080/ohtu_mini");
+        element = driver.findElement(By.linkText("Add"));
+        element.click();
+        element = driver.findElement(By.name("author"));      
+        element.sendKeys("pekka");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("2012");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        testable = driver.getPageSource().contains("2012");
+        Assert.assertEquals(true, testable); 
+    }
+    
+    @Test
+    public void creationNotSuccessfulPagesWrong() {
+
+    }
+    
+    @Test
+    public void creationNotSuccessfulYearWrong() {
+
+    }
 }
