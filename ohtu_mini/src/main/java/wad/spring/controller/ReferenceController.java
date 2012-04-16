@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
 import wad.spring.domain.Reference;
+import wad.spring.form.FileForm;
+import wad.spring.service.BibtexService;
 import wad.spring.service.ReferenceService;
 
 /**
@@ -22,6 +22,9 @@ import wad.spring.service.ReferenceService;
 public class ReferenceController {
     @Autowired
     ReferenceService referenceService;
+    
+    @Autowired
+    BibtexService bibtexService;
     
     @RequestMapping("*/**")
     public String homeSite(Model model) {
@@ -57,6 +60,22 @@ public class ReferenceController {
     public String showReferences(Model model) {
         model.addAttribute("references", referenceService.listAllReferences());
         return "listAll";
-    }    
+    }
+    
+    @RequestMapping(value = "reference/bibtex", method = RequestMethod.GET)
+    public String showBibtexPage(Model model) {
+        model.addAttribute("fileform", new FileForm());
+        return "bibtex";
+    }
+    
+    @RequestMapping(value = "reference/bibtex", method = RequestMethod.POST)
+    public String generateBibtex(@Valid @ModelAttribute FileForm filename, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "bibtex";
+        }
+        model.addAttribute("filename", filename);
+        model.addAttribute("bibtex", bibtexService.generateBibtex());
+        return "generatedBibtex";
+    }
    
 }
