@@ -4,11 +4,12 @@
  */
 package wad.spring.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wad.spring.repository.ReferenceRepository;
 import wad.spring.tools.parsers;
-
+import wad.spring.domain.Reference;
 /**
  *
  * @author tonykova
@@ -20,13 +21,20 @@ public class BibtexServiceImpl implements BibtexService {
     
     @Override
     public String generateBibtex() {
-        parsers.parsePageNumber("trololoo");
-        parsers.parseScandit("trololoo");
-        return "trolol";
+        
+        List<Reference> allReferences = referenceRepository.findAll();
+        for (int i=0; i<allReferences.size(); i++){
+            parsers.parsePageNumber(allReferences.get(i));
+            parsers.parseScandit(allReferences.get(i));   
+        }
+        
+        return generateString(allReferences);
     }
     
     
-   
-    
+    public static String generateString(List<Reference> AllReferences){
+        
+        return "trololoo";
+    }
     
 }
