@@ -43,6 +43,7 @@ public class Reference implements Serializable {
     
     private int volume;
     private int number;
+    private String referenceCite;
     
     public boolean equals(Object o) {
         if (o instanceof Reference) {
@@ -102,6 +103,15 @@ public class Reference implements Serializable {
     public void setVolume(int volume) {
         this.volume = volume;
     }
+
+    public String getReferenceCite() {
+        return referenceCite;
+    }
+
+    public void setReferenceCite(String referenceCite) {
+        this.referenceCite = referenceCite;
+    }
+    
 
     public String getAddress() {
         return address;

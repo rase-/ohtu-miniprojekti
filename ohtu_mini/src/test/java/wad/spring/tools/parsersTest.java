@@ -34,11 +34,28 @@ public class parsersTest {
     public void tearDown() {
     }
 
-    public Reference generate(){
+    public Reference generateParsittava(){
         Reference reference = new Reference();
         reference.setAuthor("Vihavainen");
         reference.setBooktitle("älpälä");
+        reference.setAddress("löl");
+        reference.setPublisher("läl");
+        reference.setTitle("kirja");
+        reference.setJournal("journal");
+        reference.setPages("3-7");
         return reference;
+    }
+    
+    public Reference generateValmis(){
+       Reference reference = new Reference();
+       reference.setAuthor("Vihavainen");
+       reference.setBooktitle("\"{a}l\"{a}p\"{a}l\"{a}");
+        reference.setAddress("l\"{o}l");
+        reference.setPublisher("l\"{a}l");
+        reference.setTitle("kirja");
+        reference.setJournal("journal");
+        reference.setPages("3--7");
+        return reference; 
     }
     /**
      * Test of parseScandit method, of class parsers.
@@ -46,12 +63,11 @@ public class parsersTest {
     @Test
     public void testParseScandit() {
         System.out.println("parseScandit");
-        Reference toBeParsed = generate();
-        Reference expResult = null;
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
         Reference result = parsers.parseScandit(toBeParsed);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult.getAuthor(), result.getAuthor());
+     
     }
 
     /**
@@ -60,11 +76,10 @@ public class parsersTest {
     @Test
     public void testParsePageNumber() {
         System.out.println("parsePageNumber");
-        Reference toBeParsed = null;
-        Reference expResult = null;
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
         Reference result = parsers.parsePageNumber(toBeParsed);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult.getPages(), result.getPages());
+
     }
 }

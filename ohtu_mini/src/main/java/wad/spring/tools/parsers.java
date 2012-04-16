@@ -16,4 +16,10 @@ public class parsers {
         
         return toBeParsed;
     }
+    
+    public static Reference generateCode(Reference toBeParsed){
+        
+        
+        return toBeParsed;
+    }
 }
