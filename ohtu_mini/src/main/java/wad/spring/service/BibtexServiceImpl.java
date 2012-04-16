@@ -26,14 +26,16 @@ public class BibtexServiceImpl implements BibtexService {
         for (int i=0; i<allReferences.size(); i++){
             parsers.parsePageNumber(allReferences.get(i));
             parsers.parseScandit(allReferences.get(i));   
+            parsers.generateCite(allReferences.get(i));
         }
         
         return generateString(allReferences);
-        
     }
     
     
     public static String generateString(List<Reference> AllReferences){
+        
+        
         
         return "trololoo";
     }

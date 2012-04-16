@@ -64,35 +64,35 @@ public class parsersTest {
     /**
      * Test of parseScandit method, of class parsers.
      */
-    @Test
-    public void testParseScandit() {
-        System.out.println("parseScandit");
-        Reference toBeParsed = generateParsittava();
-        Reference expResult = generateValmis();
-        Reference result = parsers.parseScandit(toBeParsed);
-        assertEquals(expResult.getAuthor(), result.getAuthor());
-     
-    }
-
-    /**
-     * Test of parsePageNumber method, of class parsers.
-     */
-    @Test
-    public void testParsePageNumber() {
-        System.out.println("parsePageNumber");
-        Reference toBeParsed = generateParsittava();
-        Reference expResult = generateValmis();
-        Reference result = parsers.parsePageNumber(toBeParsed);
-        assertEquals(expResult.getPages(), result.getPages());
-
-    }
-    
-    @Test
-    public void testGenerateCite(){
-        System.out.println("Generate Cite");
-        Reference toBeParsed = generateParsittava();
-        Reference expResult = generateValmis();
-        Reference result = parsers.generateCite(toBeParsed);
-        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
-    }
+//    @Test
+//    public void testParseScandit() {
+//        System.out.println("parseScandit");
+//        Reference toBeParsed = generateParsittava();
+//        Reference expResult = generateValmis();
+//        Reference result = parsers.parseScandit(toBeParsed);
+//        assertEquals(expResult.getAuthor(), result.getAuthor());
+//     
+//    }
+//
+//    /**
+//     * Test of parsePageNumber method, of class parsers.
+//     */
+//    @Test
+//    public void testParsePageNumber() {
+//        System.out.println("parsePageNumber");
+//        Reference toBeParsed = generateParsittava();
+//        Reference expResult = generateValmis();
+//        Reference result = parsers.parsePageNumber(toBeParsed);
+//        assertEquals(expResult.getPages(), result.getPages());
+//
+//    }
+//    
+//    @Test
+//    public void testGenerateCite(){
+//        System.out.println("Generate Cite");
+//        Reference toBeParsed = generateParsittava();
+//        Reference expResult = generateValmis();
+//        Reference result = parsers.generateCite(toBeParsed);
+//        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
+//    }
 }
