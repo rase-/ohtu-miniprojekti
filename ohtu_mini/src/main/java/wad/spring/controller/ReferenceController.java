@@ -1,7 +1,12 @@
 
 package wad.spring.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringBufferInputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,13 +74,37 @@ public class ReferenceController {
     }
     
     @RequestMapping(value = "reference/bibtex", method = RequestMethod.POST)
-    public String generateBibtex(@Valid @ModelAttribute FileForm fileForm, BindingResult result, Model model) {
+    public String generateBibtex(@Valid @ModelAttribute FileForm fileForm, BindingResult result, Model model, HttpServletResponse response) throws IOException {
         if (result.hasErrors()) {
             return "bibtex";
         }
         model.addAttribute("filename", fileForm.getFilename());
         model.addAttribute("bibtex", bibtexService.generateBibtex());
-        return "generatedBibtex";
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition","attachment;filename=" + fileForm.getFilename() + ".bib");
+        InputStream is = new StringBufferInputStream(bibtexService.generateBibtex());
+        IOUtils.copy(is, response.getOutputStream());
+        response.flushBuffer();
+        return "redirect:/home";
     }
+    
    
+   
+//    @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
+//public void getFile(
+//    @PathVariable("file_name") String fileName, 
+//    HttpServletResponse response) {
+//    try {
+//      // get your file as InputStream
+//      InputStream is = ...;
+//      // copy it to response's OutputStream
+//      IOUtils.copy(is, response.getOutputStream());
+//      response.flushBuffer();
+//    } catch (IOException ex) {
+//      log.info("Error writing file to output stream. Filename was '" + fileName + "'");
+//      throw new RuntimeException("IOError writing file to output stream");
+//    }
+//
+//}
+    
 }

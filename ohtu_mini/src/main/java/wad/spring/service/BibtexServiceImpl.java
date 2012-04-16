@@ -20,7 +20,6 @@ public class BibtexServiceImpl implements BibtexService {
     
     @Override
     public String generateBibtex() {
-        
         parsers.parsePageNumber("trololoo");
         parsers.parseScandit("trololoo");
         return "trolol";
