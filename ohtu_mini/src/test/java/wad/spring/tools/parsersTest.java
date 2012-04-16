@@ -37,7 +37,8 @@ public class parsersTest {
     public Reference generateParsittava(){
         Reference reference = new Reference();
         reference.setAuthor("Vihavainen");
-        reference.setBooktitle("älpälä");
+//        reference.setBooktitle("älpälä");
+        reference.setBooktitle("Nörttien päivä");
         reference.setAddress("löl");
         reference.setPublisher("läl");
         reference.setTitle("kirja");
@@ -49,9 +50,10 @@ public class parsersTest {
     }
     
     public Reference generateValmis(){
-       Reference reference = new Reference();
-       reference.setAuthor("Vihavainen");
-       reference.setBooktitle("\"{a}l\"{a}p\"{a}l\"{a}");
+        Reference reference = new Reference();
+        reference.setAuthor("Vihavainen");
+//        reference.setBooktitle("\"{a}l\"{a}p\"{a}l\"{a}");
+        reference.setBooktitle("N\\\"{o}rttien p\\\"{a}iv\\\"{a}");
         reference.setAddress("l\"{o}l");
         reference.setPublisher("l\"{a}l");
         reference.setTitle("kirja");
@@ -64,16 +66,19 @@ public class parsersTest {
     /**
      * Test of parseScandit method, of class parsers.
      */
-//    @Test
-//    public void testParseScandit() {
-//        System.out.println("parseScandit");
-//        Reference toBeParsed = generateParsittava();
-//        Reference expResult = generateValmis();
-//        Reference result = parsers.parseScandit(toBeParsed);
+    @Test
+    public void testParseScandit() {
+        System.out.println("parseScandit");
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
+        Reference result = parsers.parseScandit(toBeParsed);
 //        assertEquals(expResult.getAuthor(), result.getAuthor());
-//     
-//    }
-//
+        assertEquals(expResult.getBooktitle(), result.getBooktitle());
+        
+     
+    }
+
+
 //    /**
 //     * Test of parsePageNumber method, of class parsers.
 //     */
@@ -86,7 +91,7 @@ public class parsersTest {
 //        assertEquals(expResult.getPages(), result.getPages());
 //
 //    }
-//    
+
 //    @Test
 //    public void testGenerateCite(){
 //        System.out.println("Generate Cite");
