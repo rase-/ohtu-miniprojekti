@@ -42,7 +42,9 @@ public class parsersTest {
         reference.setPublisher("läl");
         reference.setTitle("kirja");
         reference.setJournal("journal");
+        reference.setPublishingYear("2006");
         reference.setPages("3-7");
+        
         return reference;
     }
     
@@ -55,6 +57,8 @@ public class parsersTest {
         reference.setTitle("kirja");
         reference.setJournal("journal");
         reference.setPages("3--7");
+        reference.setPublishingYear("2006");
+        reference.setReferenceCite("V06");
         return reference; 
     }
     /**
@@ -81,5 +85,14 @@ public class parsersTest {
         Reference result = parsers.parsePageNumber(toBeParsed);
         assertEquals(expResult.getPages(), result.getPages());
 
+    }
+    
+    @Test
+    public void testGenerateCite(){
+        System.out.println("Generate Cite");
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
+        Reference result = parsers.generateCite(toBeParsed);
+        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
     }
 }

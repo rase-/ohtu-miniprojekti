@@ -17,9 +17,15 @@ public class parsers {
         return toBeParsed;
     }
     
-    public static Reference generateCode(Reference toBeParsed){
+    public static Reference generateCite(Reference toBeGenerated){
+        String firstLetter = toBeGenerated.getAuthor();
+        firstLetter = firstLetter.substring(0, 1);
         
+        String year = toBeGenerated.getPublishingYear();
+        year = year.substring(2);
+        String palautettava = firstLetter + year;
         
-        return toBeParsed;
+        toBeGenerated.setReferenceCite(palautettava);
+        return toBeGenerated;
     }
 }
