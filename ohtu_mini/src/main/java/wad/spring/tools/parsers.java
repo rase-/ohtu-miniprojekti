@@ -7,12 +7,24 @@ public class parsers {
     
     
     public static Reference parseScandit(Reference toBeParsed){
+        toBeParsed.setAuthor(skandi(toBeParsed.getAuthor()));
+        toBeParsed.setBooktitle(skandi(toBeParsed.getBooktitle()));
         
         return toBeParsed;
     }
     
-    public static Reference parsePageNumber(Reference toBeParsed){
-        
+    private static String skandi(String str) {
+        String a = "\\\"{a}"; //ä
+        String o = "\\\"{o}"; //ö
+        if(str.contains("ä"))
+            str = str.replace("ä", a);
+        if(str.contains("ö"))
+            str = str.replace("ö", o);
+        System.out.println(str);
+        return str;
+    }
+    
+    public static Reference parsePageNumber(Reference toBeParsed){  
         
         return toBeParsed;
     }
@@ -28,4 +40,5 @@ public class parsers {
         toBeGenerated.setReferenceCite(palautettava);
         return toBeGenerated;
     }
+
 }
