@@ -5,12 +5,14 @@
 package wad.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import wad.spring.repository.ReferenceRepository;
 
 /**
  *
  * @author tonykova
  */
+@Service
 public class BibtexServiceImpl implements BibtexService {
     @Autowired
     ReferenceRepository referenceRepository;
@@ -19,5 +21,13 @@ public class BibtexServiceImpl implements BibtexService {
     public String generateBibtex() {
         return "trolol";
     }
+    
+    
+    private String parseScandit(){
+        
+        
+        return "trololoo";
+    }
+    
     
 }
