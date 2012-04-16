@@ -1,15 +1,17 @@
 
 package wad.spring.tools;
 
+import wad.spring.domain.Reference;
+
 public class parsers {
     
     
-    public static String parseScandit(String toBeParsed){
+    public static Reference parseScandit(Reference toBeParsed){
         
         return toBeParsed;
     }
     
-    public static String parsePageNumber(String toBeParsed){
+    public static Reference parsePageNumber(Reference toBeParsed){
         
         
         return toBeParsed;
