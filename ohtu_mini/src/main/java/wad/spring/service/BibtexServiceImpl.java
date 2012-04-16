@@ -22,15 +22,20 @@ public class BibtexServiceImpl implements BibtexService {
     @Override
     public String generateBibtex() {
         
-        List AllReferences = referenceRepository.findAll();
-        for (int i=0; i<AllReferences.size(); i++){
-            Reference parsittava = (Reference)AllReferences.get(i);
-            parsers.parsePageNumber(parsittava);
-            parsers.parseScandit(parsittava);   
+        List<Reference> allReferences = referenceRepository.findAll();
+        for (int i=0; i<allReferences.size(); i++){
+            parsers.parsePageNumber(allReferences.get(i));
+            parsers.parseScandit(allReferences.get(i));   
         }
         
-        return "trolol";
+        return generateString(allReferences);
+        
     }
     
+    
+    public static String generateString(List<Reference> AllReferences){
+        
+        return "trololoo";
+    }
     
 }
