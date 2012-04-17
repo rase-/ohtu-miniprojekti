@@ -1,10 +1,11 @@
 package wad.spring.tools;
 
+import java.util.HashSet;
 import java.util.List;
 import wad.spring.domain.Reference;
 
 public class Parsers {
-
+private static int citelaskuri = 1;
     //Anni
     public static Reference parseScandit(Reference toBeParsed) {
         toBeParsed.setAuthor(skandi(toBeParsed.getAuthor()));
@@ -52,17 +53,26 @@ public class Parsers {
         return toBeParsed;
     }
 
-    public static Reference generateCite(Reference toBeGenerated) {
+    public static Reference generateCite(Reference toBeGenerated, HashSet codes) {
         String firstLetter = toBeGenerated.getAuthor().substring(0, 1);
         String year = toBeGenerated.getPublishingYear().substring(2);
-        toBeGenerated.setReferenceCite(firstLetter + year);
+        String citeCode = firstLetter + year;
+        toBeGenerated.setReferenceCite(citeCode);
+        
+        if (codes.add(citeCode)) return toBeGenerated;
+        else {
+           
+            citeCode = citeCode+citelaskuri;
+            citelaskuri++;
+            toBeGenerated.setReferenceCite(citeCode);
+            codes.add(citeCode);
+        }
+        
+        
         return toBeGenerated;
     }
 
-    //Herkko
-    public static boolean checkCites(List<Reference> list) {
-        //tarkistetaan ettei yksikään Cite koodi ole samanlainen ja jos on, niin korvataan se uudella.
+  
 
-        return true;
-    }
+   
 }

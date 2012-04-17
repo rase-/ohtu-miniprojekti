@@ -4,6 +4,8 @@
  */
 package wad.spring.service;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,10 +25,12 @@ public class BibtexServiceImpl implements BibtexService {
     public String generateBibtex() {
         
         List<Reference> allReferences = referenceRepository.findAll();
+        HashSet citeCodes = new HashSet();
+        
         for (int i=0; i<allReferences.size(); i++){
             Parsers.parsePageNumber(allReferences.get(i));
             Parsers.parseScandit(allReferences.get(i));   
-            Parsers.generateCite(allReferences.get(i));
+            Parsers.generateCite(allReferences.get(i), citeCodes);
         }
         
         return generateString(allReferences);
@@ -34,10 +38,15 @@ public class BibtexServiceImpl implements BibtexService {
     
     
     public static String generateString(List<Reference> AllReferences){
+        String palautettava = "";
+        
+        for (int i=0; i<AllReferences.size(); i++){
+          String yhdistettava = AllReferences.get(i).toString();
+           palautettava = palautettava + yhdistettava; 
+        }
         
         
-        
-        return "trololoo";
+        return palautettava;
     }
     
 }

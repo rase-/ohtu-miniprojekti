@@ -4,6 +4,7 @@
  */
 package wad.spring.tools;
 
+import java.util.HashSet;
 import org.junit.*;
 import static org.junit.Assert.*;
 import wad.spring.domain.Reference;
@@ -92,12 +93,26 @@ public class ParsersTest {
 
     }
 
-//    @Test
-//    public void testGenerateCite(){
-//        System.out.println("Generate Cite");
-//        Reference toBeParsed = generateParsittava();
-//        Reference expResult = generateValmis();
-//        Reference result = Parsers.generateCite(toBeParsed);
-//        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
-//    }
+    @Test
+    public void testGenerateCite(){
+        System.out.println("Generate Cite");
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
+        HashSet setti = new HashSet();
+        Reference result = Parsers.generateCite(toBeParsed, setti);
+        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
+    }
+    
+       @Test
+    public void testGenerateCiteWithSameCite(){
+        System.out.println("Generate Cite with same cite");
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
+        expResult.setReferenceCite("V061");
+        HashSet setti = new HashSet();
+        Parsers.generateCite(toBeParsed, setti);
+        Reference result = Parsers.generateCite(toBeParsed, setti);
+        
+        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
+    }
 }

@@ -168,4 +168,27 @@ public class Reference implements Serializable {
         return id;
     }
 
+    public String toString(){
+        String palautettava = "@ TYPE, \n author = {" + author +"}, \n title = { " +title +"} \n journal = "
+                             + "{"+journal+" } \n Volume" 
+                                ;
+        
+        return palautettava;
+    }
+
+//    @article{W04,
+//author = {Whittington, Keith J.},
+//title = {Infusing active learning into introductory programming courses},
+//journal = {J. Comput. Small Coll.},
+//volume = {19},
+//number = {5},
+//year = {2004},
+//pages = {249--259},
+//publisher = {Consortium for Computing Sciences in Colleges},
+//address = {USA},
+//}
+    
+    
 }
+
+
