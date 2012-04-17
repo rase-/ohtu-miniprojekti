@@ -79,18 +79,18 @@ public class ParsersTest {
     }
 
 
-//    /**
-//     * Test of parsePageNumber method, of class Parsers.
-//     */
-//    @Test
-//    public void testParsePageNumber() {
-//        System.out.println("parsePageNumber");
-//        Reference toBeParsed = generateParsittava();
-//        Reference expResult = generateValmis();
-//        Reference result = Parsers.parsePageNumber(toBeParsed);
-//        assertEquals(expResult.getPages(), result.getPages());
-//
-//    }
+    /**
+     * Test of parsePageNumber method, of class Parsers.
+     */
+    @Test
+    public void testParsePageNumber() {
+        System.out.println("parsePageNumber");
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
+        Reference result = Parsers.parsePageNumber(toBeParsed);
+        assertEquals(expResult.getPages(), result.getPages());
+
+    }
 
 //    @Test
 //    public void testGenerateCite(){

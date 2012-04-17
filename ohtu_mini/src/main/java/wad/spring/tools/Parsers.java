@@ -38,7 +38,7 @@ public class Parsers {
 
     //Markus
     public static Reference parsePageNumber(Reference toBeParsed){  
-
+        toBeParsed.setPages(toBeParsed.getPages().replace("-", "--"));
         return toBeParsed;
     }
     
