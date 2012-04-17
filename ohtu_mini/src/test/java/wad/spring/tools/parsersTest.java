@@ -12,9 +12,9 @@ import wad.spring.domain.Reference;
  *
  * @author hjvirola
  */
-public class parsersTest {
+public class ParsersTest {
     
-    public parsersTest() {
+    public ParsersTest() {
     }
 
     @BeforeClass
