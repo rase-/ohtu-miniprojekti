@@ -4,7 +4,7 @@ package wad.spring.tools;
 import java.util.List;
 import wad.spring.domain.Reference;
 
-public class parsers {
+public class Parsers {
     
     //Anni
     public static Reference parseScandit(Reference toBeParsed){

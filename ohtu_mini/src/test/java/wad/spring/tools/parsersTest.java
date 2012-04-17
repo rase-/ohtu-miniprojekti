@@ -64,14 +64,14 @@ public class parsersTest {
         return reference; 
     }
     /**
-     * Test of parseScandit method, of class parsers.
+     * Test of parseScandit method, of class Parsers.
      */
     @Test
     public void testParseScandit() {
         System.out.println("parseScandit");
         Reference toBeParsed = generateParsittava();
         Reference expResult = generateValmis();
-        Reference result = parsers.parseScandit(toBeParsed);
+        Reference result = Parsers.parseScandit(toBeParsed);
 //        assertEquals(expResult.getAuthor(), result.getAuthor());
         assertEquals(expResult.getBooktitle(), result.getBooktitle());
         
@@ -80,14 +80,14 @@ public class parsersTest {
 
 
 //    /**
-//     * Test of parsePageNumber method, of class parsers.
+//     * Test of parsePageNumber method, of class Parsers.
 //     */
 //    @Test
 //    public void testParsePageNumber() {
 //        System.out.println("parsePageNumber");
 //        Reference toBeParsed = generateParsittava();
 //        Reference expResult = generateValmis();
-//        Reference result = parsers.parsePageNumber(toBeParsed);
+//        Reference result = Parsers.parsePageNumber(toBeParsed);
 //        assertEquals(expResult.getPages(), result.getPages());
 //
 //    }
@@ -97,7 +97,7 @@ public class parsersTest {
 //        System.out.println("Generate Cite");
 //        Reference toBeParsed = generateParsittava();
 //        Reference expResult = generateValmis();
-//        Reference result = parsers.generateCite(toBeParsed);
+//        Reference result = Parsers.generateCite(toBeParsed);
 //        assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
 //    }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wad.spring.repository.ReferenceRepository;
-import wad.spring.tools.parsers;
+import wad.spring.tools.Parsers;
 import wad.spring.domain.Reference;
 /**
  *
@@ -24,9 +24,9 @@ public class BibtexServiceImpl implements BibtexService {
         
         List<Reference> allReferences = referenceRepository.findAll();
         for (int i=0; i<allReferences.size(); i++){
-            parsers.parsePageNumber(allReferences.get(i));
-            parsers.parseScandit(allReferences.get(i));   
-            parsers.generateCite(allReferences.get(i));
+            Parsers.parsePageNumber(allReferences.get(i));
+            Parsers.parseScandit(allReferences.get(i));   
+            Parsers.generateCite(allReferences.get(i));
         }
         
         return generateString(allReferences);
