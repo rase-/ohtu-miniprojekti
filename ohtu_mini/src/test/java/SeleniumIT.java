@@ -6,12 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class SeleniumTest {
+public class SeleniumIT {
     
     HtmlUnitDriver driver;
     WebElement element;
     boolean testable = false;
-    public SeleniumTest() {
+    String address = "http://localhost:9090/v6-pilveen";
+    public SeleniumIT() {
     }
 
     @BeforeClass
@@ -34,7 +35,7 @@ public class SeleniumTest {
     @Test
     public void creationSuccessful() {
         driver = new HtmlUnitDriver();
-        driver.get("http://localhost:8080/ohtu_mini");
+        driver.get(address);
         element = driver.findElement(By.linkText("Add"));
         element.click();
         element = driver.findElement(By.name("author"));      
@@ -50,7 +51,7 @@ public class SeleniumTest {
     @Test
     public void creationNotSuccessfulNoAuthor() {
         driver = new HtmlUnitDriver();
-        driver.get("http://localhost:8080/ohtu_mini");
+        driver.get(address);
         element = driver.findElement(By.linkText("Add"));
         element.click();
         element = driver.findElement(By.name("author"));      
@@ -66,7 +67,7 @@ public class SeleniumTest {
     @Test
     public void creationNotSuccessfulNoTitle() {
         driver = new HtmlUnitDriver();
-        driver.get("http://localhost:8080/ohtu_mini");
+        driver.get(address);
         element = driver.findElement(By.linkText("Add"));
         element.click();
         element = driver.findElement(By.name("author"));      
@@ -81,7 +82,7 @@ public class SeleniumTest {
     @Test
     public void creationSuccessfulWithPages() {
         driver = new HtmlUnitDriver();
-        driver.get("http://localhost:8080/ohtu_mini");
+        driver.get(address);
         element = driver.findElement(By.linkText("Add"));
         element.click();
         element = driver.findElement(By.name("author"));      
@@ -99,7 +100,7 @@ public class SeleniumTest {
     @Test
     public void creationSuccessfulWithYear() {
         driver = new HtmlUnitDriver();
-        driver.get("http://localhost:8080/ohtu_mini");
+        driver.get(address);
         element = driver.findElement(By.linkText("Add"));
         element.click();
         element = driver.findElement(By.name("author"));      
