@@ -26,7 +26,6 @@ private static int citelaskuri = 1;
         str = str.replace("Ö", "\\\"{O}");
         str = str.replace("å", "\\aa");
         str = str.replace("Å", "\\AA");
-        System.out.println(str);
         return str;
     }
 
