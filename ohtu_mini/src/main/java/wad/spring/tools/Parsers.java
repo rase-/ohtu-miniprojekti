@@ -10,38 +10,23 @@ private static int citelaskuri = 1;
     public static Reference parseScandit(Reference toBeParsed) {
         toBeParsed.setAuthor(skandi(toBeParsed.getAuthor()));
         toBeParsed.setTitle(skandi(toBeParsed.getTitle()));
-        if (toBeParsed.getPublisher() != null) {
+        if (toBeParsed.getPublisher() != null) 
             toBeParsed.setPublisher(skandi(toBeParsed.getPublisher()));
-        }
-        if (toBeParsed.getAddress() != null) {
+        if (toBeParsed.getAddress() != null) 
             toBeParsed.setAddress(skandi(toBeParsed.getAddress()));
-        }
-        if (toBeParsed.getBooktitle() != null) {
+        if (toBeParsed.getBooktitle() != null) 
             toBeParsed.setBooktitle(skandi(toBeParsed.getBooktitle()));
-        }
-
         return toBeParsed;
     }
 
     private static String skandi(String str) {
-        if (str.contains("ä")) {
-            str = str.replace("ä", "\\\"{a}");
-        }
-        if (str.contains("Ä")) {
-            str = str.replace("Ä", "\\\"{A}");
-        }
-        if (str.contains("ö")) {
-            str = str.replace("ö", "\\\"{o}");
-        }
-        if (str.contains("Ö")) {
-            str = str.replace("Ö", "\\\"{O}");
-        }
-        if (str.contains("å")) {
-            str = str.replace("å", "\\aa");
-        }
-        if (str.contains("Å")) {
-            str = str.replace("Å", "\\AA");
-        }
+        str = str.replace("ä", "\\\"{a}");
+        str = str.replace("Ä", "\\\"{A}");
+        str = str.replace("ö", "\\\"{o}");
+        str = str.replace("Ö", "\\\"{O}");
+        str = str.replace("å", "\\aa");
+        str = str.replace("Å", "\\AA");
+        System.out.println(str);
         return str;
     }
 

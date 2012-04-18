@@ -38,10 +38,9 @@ public class ParsersTest {
     public Reference generateParsittava(){
         Reference reference = new Reference();
         reference.setAuthor("Vihavainen");
-//        reference.setBooktitle("älpälä");
         reference.setBooktitle("Nörttien päivä");
-        reference.setAddress("löl");
-        reference.setPublisher("läl");
+        reference.setAddress("USA");
+        reference.setPublisher("ACM");
         reference.setTitle("kirja");
         reference.setJournal("journal");
         reference.setPublishingYear("2006");
@@ -53,10 +52,9 @@ public class ParsersTest {
     public Reference generateValmis(){
         Reference reference = new Reference();
         reference.setAuthor("Vihavainen");
-//        reference.setBooktitle("\"{a}l\"{a}p\"{a}l\"{a}");
         reference.setBooktitle("N\\\"{o}rttien p\\\"{a}iv\\\"{a}");
-        reference.setAddress("l\"{o}l");
-        reference.setPublisher("l\"{a}l");
+        reference.setAddress("USA");
+        reference.setPublisher("ACM");
         reference.setTitle("kirja");
         reference.setJournal("journal");
         reference.setPages("3--7");
@@ -73,10 +71,7 @@ public class ParsersTest {
         Reference toBeParsed = generateParsittava();
         Reference expResult = generateValmis();
         Reference result = Parsers.parseScandit(toBeParsed);
-//        assertEquals(expResult.getAuthor(), result.getAuthor());
         assertEquals(expResult.getBooktitle(), result.getBooktitle());
-        
-     
     }
 
 
