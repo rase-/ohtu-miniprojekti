@@ -45,6 +45,8 @@ public class Parsers {
         str = str.replace("Ö", "\\\"{O}");
         str = str.replace("å", "\\aa");
         str = str.replace("Å", "\\AA");
+        str = str.replace("ü", "\\\"{u}");
+        str = str.replace("Ü", "\\\"{U}");
         return str;
     }
 
