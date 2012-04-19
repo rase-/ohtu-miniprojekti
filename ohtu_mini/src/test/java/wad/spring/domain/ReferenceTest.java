@@ -409,10 +409,10 @@ public class ReferenceTest {
         Reference instance = generateParsittava();
       
         
-        String expResult = "";
+        String expResult = "@book{V06,\nauthor = {Vihavainen},\ntitle = {ohjelmistotuotannon perusteet},\nyear = {2006},\n}";
         String result = Parsers.generateCite(instance, new HashSet()).toString();
         System.out.println(instance.toString());
-        assertEquals(expResult, expResult); //ei siis valmis
+        assertEquals(expResult, result); //ei siis valmis
 
     }
     
@@ -420,14 +420,9 @@ public class ReferenceTest {
         Reference reference = new Reference();
         reference.setType(ReferenceType.BOOK);
         reference.setAuthor("Vihavainen");
-//        reference.setBooktitle("älpälä");
-        reference.setBooktitle("Nörttien päivä");
-        reference.setAddress("Osoite");
-        reference.setPublisher("julkaisija");
         reference.setTitle("ohjelmistotuotannon perusteet");
-        reference.setJournal("journal");
         reference.setPublishingYear("2006");
-        reference.setPages("3-7");
+        reference.setReferenceCite("V06");
         
         return reference;
     }

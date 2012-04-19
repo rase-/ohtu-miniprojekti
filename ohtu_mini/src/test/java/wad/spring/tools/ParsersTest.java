@@ -101,7 +101,7 @@ public class ParsersTest {
         assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
     }
     
-       @Test
+    @Test
     public void testGenerateCiteWithSameCite(){
         System.out.println("Generate Cite with same cite");
         Reference toBeParsed = generateParsittava();

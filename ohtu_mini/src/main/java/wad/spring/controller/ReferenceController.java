@@ -87,8 +87,6 @@ public class ReferenceController {
         if (result.hasErrors()) {
             return "bibtex";
         }
-        model.addAttribute("filename", fileForm.getFilename());
-        model.addAttribute("bibtex", bibtexService.generateBibtex());
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment;filename=" + fileForm.getFilename() + ".bib");
         InputStream is = new StringBufferInputStream(bibtexService.generateBibtex());

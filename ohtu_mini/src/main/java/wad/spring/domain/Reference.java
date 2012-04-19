@@ -193,6 +193,7 @@ public class Reference implements Serializable {
         System.out.println("Past first");
         if (author != null && !author.isEmpty()) {
             palautettava += "author = {" + this.author + "},\n";
+
         }
         if (title != null && !author.isEmpty()) {
             palautettava += "title = {" + this.title + "},\n";
