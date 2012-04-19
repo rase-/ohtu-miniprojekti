@@ -8,8 +8,12 @@ public class Parsers {
 private static long citelaskuri = 1;
     //Anni
     public static Reference parseScandit(Reference toBeParsed) {
-        toBeParsed.setAuthor(skandi(toBeParsed.getAuthor()));
-        toBeParsed.setTitle(skandi(toBeParsed.getTitle()));
+        if (toBeParsed.getAuthor() != null) {
+            toBeParsed.setAuthor(skandi(toBeParsed.getAuthor()));
+        }
+        if (toBeParsed.getTitle() != null) {
+            toBeParsed.setTitle(skandi(toBeParsed.getTitle()));
+        }
         if (toBeParsed.getPublisher() != null) 
             toBeParsed.setPublisher(skandi(toBeParsed.getPublisher()));
         if (toBeParsed.getAddress() != null) 
@@ -18,6 +22,12 @@ private static long citelaskuri = 1;
             toBeParsed.setBooktitle(skandi(toBeParsed.getBooktitle()));
         if (toBeParsed.getNote() != null)
             toBeParsed.setNote(skandi(toBeParsed.getNote()));
+        if (toBeParsed.getAddress() != null) {
+            toBeParsed.setAddress(skandi(toBeParsed.getAddress()));
+        }
+        if (toBeParsed.getJournal() != null) {
+            toBeParsed.setJournal(skandi(toBeParsed.getJournal()));
+        }
         return toBeParsed;
     }
 
