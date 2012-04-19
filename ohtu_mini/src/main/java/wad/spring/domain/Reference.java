@@ -28,7 +28,7 @@ public class Reference implements Serializable {
     @NotNull
     @Pattern(regexp="[^<>$%]+", message="There should be a title and it should not contain <>$%")
     private String title;
-    @Pattern(regexp="([0-9]{4})?", message="Year should contain exactly 4 numbers")
+    @Pattern(regexp="[0-9]{4}", message="Year should contain exactly 4 numbers and should not be left empty")
     private String publishingYear;
     @Pattern(regexp="[^<>$%]*", message="Publisher should not contain <>$%")
     private String publisher;
@@ -40,6 +40,8 @@ public class Reference implements Serializable {
     private String booktitle;
     @Pattern(regexp="[^<>$%]*", message="Journal should not contain <>$%")
     private String journal;
+    @Pattern(regexp="[^<>$%]*", message="Note should not contain <>$%")
+    private String note;
     
     private int volume;
     private int number;
@@ -166,6 +168,14 @@ public class Reference implements Serializable {
 
     public Long getId() {
         return id;
+    }
+    
+    public String getNote() {
+        return this.note;
+    }
+    
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String toString(){

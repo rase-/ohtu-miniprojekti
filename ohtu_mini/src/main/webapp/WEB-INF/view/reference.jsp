@@ -14,6 +14,7 @@
                 <form:option value="ARTICLE" label="Article" />
                 <form:option value="BOOK" label="Book" />
                 <form:option value="INPROCEEDINGS" label="Inproceedings" />
+                <form:option value="MISC" label="Misc" />
             </form:select> <br />
             Author: <form:input path="author" /><form:errors path="author" /><br/>
             Title: <form:input path="title" /><form:errors path="title" /><br/>
@@ -25,6 +26,7 @@
             Journal: <form:input path="journal" /><form:errors path="journal" /><br/>
             Volume: <form:input path="volume" /><form:errors path="volume" /><br/>
             Number: <form:input path="number" /><form:errors path="number" /><br/>
+            Note: <form:input path="note" /><form:errors path="note" /><br/>
             <input name="submit" type="submit" value="submit" />
         </form:form>
     </body>

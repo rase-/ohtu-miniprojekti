@@ -9,5 +9,5 @@ package wad.spring.domain;
  * @author tonykova
  */
 public enum ReferenceType {
-    INPROCEEDINGS, BOOK, ARTICLE;
+    INPROCEEDINGS, BOOK, ARTICLE, MISC;
 }

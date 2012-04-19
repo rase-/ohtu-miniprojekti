@@ -5,7 +5,7 @@ import java.util.List;
 import wad.spring.domain.Reference;
 
 public class Parsers {
-private static int citelaskuri = 1;
+private static long citelaskuri = 1;
     //Anni
     public static Reference parseScandit(Reference toBeParsed) {
         toBeParsed.setAuthor(skandi(toBeParsed.getAuthor()));
@@ -16,6 +16,8 @@ private static int citelaskuri = 1;
             toBeParsed.setAddress(skandi(toBeParsed.getAddress()));
         if (toBeParsed.getBooktitle() != null) 
             toBeParsed.setBooktitle(skandi(toBeParsed.getBooktitle()));
+        if (toBeParsed.getNote() != null)
+            toBeParsed.setNote(skandi(toBeParsed.getNote()));
         return toBeParsed;
     }
 
