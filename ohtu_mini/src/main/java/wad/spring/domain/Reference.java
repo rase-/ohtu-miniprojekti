@@ -16,37 +16,36 @@ import javax.validation.constraints.Pattern;
  *
  * @author tonykova
  */
-
 @Entity
 public class Reference implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private ReferenceType type;
-    @Pattern(regexp="[^<>$%]+", message="There has to be an author and it should not contain <>$%")
+    @Pattern(regexp = "[^<>$%]+", message = "There has to be an author and it should not contain <>$%")
     private String author;
     @NotNull
-    @Pattern(regexp="[^<>$%]+", message="There should be a title and it should not contain <>$%")
+    @Pattern(regexp = "[^<>$%]+", message = "There should be a title and it should not contain <>$%")
     private String title;
-    @Pattern(regexp="[0-9]{4}", message="Year should contain exactly 4 numbers and should not be left empty")
+    @Pattern(regexp = "[0-9]{4}", message = "Year should contain exactly 4 numbers and should not be left empty")
     private String publishingYear;
-    @Pattern(regexp="[^<>$%]*", message="Publisher should not contain <>$%")
+    @Pattern(regexp = "[^<>$%]*", message = "Publisher should not contain <>$%")
     private String publisher;
-    @Pattern(regexp="([0-9]+-{1}[0-9]+)?", message="Pages should consist of a number, a line and a number")
+    @Pattern(regexp = "([0-9]+-{1}[0-9]+)?", message = "Pages should consist of a number, a line and a number")
     private String pages;
-    @Pattern(regexp="[^<>$%]*", message="Address should not contain <>$%")
+    @Pattern(regexp = "[^<>$%]*", message = "Address should not contain <>$%")
     private String address;
-    @Pattern(regexp="[^<>$%]*", message="Booktitle should not contain <>$%")
+    @Pattern(regexp = "[^<>$%]*", message = "Booktitle should not contain <>$%")
     private String booktitle;
-    @Pattern(regexp="[^<>$%]*", message="Journal should not contain <>$%")
+    @Pattern(regexp = "[^<>$%]*", message = "Journal should not contain <>$%")
     private String journal;
-    @Pattern(regexp="[^<>$%]*", message="Note should not contain <>$%")
+    @Pattern(regexp = "[^<>$%]*", message = "Note should not contain <>$%")
     private String note;
-    
     private int volume;
     private int number;
     private String referenceCite;
-    
+
     public boolean equals(Object o) {
         if (o instanceof Reference) {
             Reference r = (Reference) o;
@@ -57,11 +56,10 @@ public class Reference implements Serializable {
         }
         return false;
     }
-    
+
     public Reference() {
-        
     }
-    
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -113,7 +111,6 @@ public class Reference implements Serializable {
     public void setReferenceCite(String referenceCite) {
         this.referenceCite = referenceCite;
     }
-    
 
     public String getAddress() {
         return address;
@@ -158,34 +155,73 @@ public class Reference implements Serializable {
     public int getVolume() {
         return volume;
     }
-    
-    
+
     public void setId(Long id) {
         this.id = id;
     }
 
-   
-
     public Long getId() {
         return id;
     }
-    
+
     public String getNote() {
         return this.note;
     }
-    
+
     public void setNote(String note) {
         this.note = note;
     }
 
-    public String toString(){
-        String palautettava = "@ TYPE, \n author = {" + author +"}, \n title = { " +title +"} \n journal = "
-                             + "{"+journal+" } \n Volume" 
-                                ;
-        
+    public String toString() {
+//        String palautettava = "@" + this.type.toString().toLowerCase() + "{" + this.getReferenceCite() + ",\n"
+//                + "author = {" + this.author + "},\n"
+//                + "title = {" + this.title + "},\n"
+//                + "year = {" + this.publishingYear + "},\n"
+//                + "publisher = {" + this.publisher + "},\n"
+//                + "booktitle = {" + this.booktitle + "},\n"
+//                + "pages = {" + this.pages + "},\n"
+//                + "address = {" + this.address + "},\n"
+//                + "journal = {" + this.journal + "},\n"
+//                + "volume = {" + this.volume + "},\n"
+//                + "number = {" + this.number + "},\n"
+//                + "note = {" + this.note + "},\n";
+        String palautettava = "@" + this.type.toString().toLowerCase() + "{" + this.getReferenceCite() + ",\n";
+        if (author != null && !author.isEmpty()) {
+            palautettava += "author = {" + this.author + "},\n";
+        }
+        if (title != null && !author.isEmpty()) {
+            palautettava += "title = {" + this.title + "},\n";
+        }
+        if (publishingYear != null && !author.isEmpty()) {
+            palautettava += "year = {" + this.publishingYear + "},\n";
+        }
+        if (publisher != null && !publisher.isEmpty()) {
+            palautettava += "publisher = {" + this.publisher + "},\n";
+        }
+        if (booktitle != null && !booktitle.isEmpty()) {
+            palautettava += "booktitle = {" + this.booktitle + "},\n";
+        }
+        if (pages != null && !pages.isEmpty()) {
+            palautettava += "pages = {" + this.pages + "},\n";
+        }
+        if (address != null && !address.isEmpty()) {
+            palautettava += "address = {" + this.address + "},\n";
+        }
+        if (journal != null && !journal.isEmpty()) {
+            palautettava += "journal = {" + this.journal + "},\n";
+        }
+        if (volume > 0) {
+            palautettava += "volume = {" + this.volume + "},\n";
+        }
+        if (number > 0) {
+            palautettava += "number = {" + this.number + "},\n";
+        }
+        if (note != null && !note.isEmpty()) {
+            palautettava += "note = {" + this.note + "},\n";
+        }
+        palautettava += "}";
         return palautettava;
     }
-
 //    @article{W04,
 //author = {Whittington, Keith J.},
 //title = {Infusing active learning into introductory programming courses},
@@ -197,8 +233,4 @@ public class Reference implements Serializable {
 //publisher = {Consortium for Computing Sciences in Colleges},
 //address = {USA},
 //}
-    
-    
 }
-
-
