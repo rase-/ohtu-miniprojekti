@@ -19,6 +19,8 @@ scenario "creation successful", {
         element.sendKeys("pekka");
         element = driver.findElement(By.name("title"));
         element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1991");
         element = driver.findElement(By.name("submit"));
         element.submit();
     }
@@ -38,6 +40,8 @@ scenario "creation not successful when missing author", {
     when 'article data entered', {
         element = driver.findElement(By.name("title"));
         element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1991");
         element = driver.findElement(By.name("submit"));
         element.submit();
     }
@@ -57,6 +61,8 @@ scenario "creation not successful when missing title", {
     when 'article data entered', {
         element = driver.findElement(By.name("author"));
         element.sendKeys("trolli");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1991");
         element = driver.findElement(By.name("submit"));
         element.submit();
     }
@@ -79,6 +85,8 @@ scenario "creation not successful when pages are typed wrong", {
         element.sendKeys("Trolls of Science");
         element = driver.findElement(By.name("pages"));
         element.sendKeys("123");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1991");
         element = driver.findElement(By.name("submit"));
         element.submit();
     }
@@ -101,6 +109,8 @@ scenario "creation successful when pages are typed right", {
         element.sendKeys("Trolls of Science");
         element = driver.findElement(By.name("pages"));
         element.sendKeys("123-126");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1991");
         element = driver.findElement(By.name("submit"));
         element.submit();
     }
@@ -109,7 +119,7 @@ scenario "creation successful when pages are typed right", {
         driver.getPageSource().contains("trolli").shouldBe true
     }
 }
-scenario "creation successful when year typed right", {
+scenario "creation not successful when year not typed", {
     given 'command add a reference is selected', {
         driver = new HtmlUnitDriver();
         driver.get(serverAddress);
@@ -121,14 +131,12 @@ scenario "creation successful when year typed right", {
         element.sendKeys("yearRight");
         element = driver.findElement(By.name("title"));
         element.sendKeys("YearRight");
-        element = driver.findElement(By.name("publishingYear"));
-        element.sendKeys("1991");
         element = driver.findElement(By.name("submit"));
         element.submit();
     }
     then 'new reference has been registered to system', {
         driver.get(serverAddress)
-        driver.getPageSource().contains("yearRight").shouldBe true
+        driver.getPageSource().contains("yearRight").shouldBe false
     }
 }
 scenario "creation not successful when year typed wrong", {

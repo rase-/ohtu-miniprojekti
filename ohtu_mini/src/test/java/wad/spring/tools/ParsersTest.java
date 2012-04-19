@@ -8,6 +8,7 @@ import java.util.HashSet;
 import org.junit.*;
 import static org.junit.Assert.*;
 import wad.spring.domain.Reference;
+import wad.spring.domain.ReferenceType;
 
 /**
  *
@@ -37,6 +38,7 @@ public class ParsersTest {
 
     public Reference generateParsittava(){
         Reference reference = new Reference();
+        reference.setType(ReferenceType.INPROCEEDINGS);
         reference.setAuthor("Vihavainen");
         reference.setBooktitle("Nörttien päivä");
         reference.setAddress("USA");
@@ -51,6 +53,7 @@ public class ParsersTest {
     
     public Reference generateValmis(){
         Reference reference = new Reference();
+        reference.setType(ReferenceType.INPROCEEDINGS);
         reference.setAuthor("Vihavainen");
         reference.setBooktitle("N\\\"{o}rttien p\\\"{a}iv\\\"{a}");
         reference.setAddress("USA");

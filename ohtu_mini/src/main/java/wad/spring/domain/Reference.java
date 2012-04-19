@@ -185,7 +185,12 @@ public class Reference implements Serializable {
 //                + "volume = {" + this.volume + "},\n"
 //                + "number = {" + this.number + "},\n"
 //                + "note = {" + this.note + "},\n";
-        String palautettava = "@" + this.type.toString().toLowerCase() + "{" + this.getReferenceCite() + ",\n";
+        if (this.type == null) {
+            return "Virhe! Ei tyyppiä!";
+        }
+        System.out.println("Before first");
+        String palautettava = "@" + this.type.toString().toLowerCase() + "{" + this.referenceCite + ",\n";
+        System.out.println("Past first");
         if (author != null && !author.isEmpty()) {
             palautettava += "author = {" + this.author + "},\n";
         }
