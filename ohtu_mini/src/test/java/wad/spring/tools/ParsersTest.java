@@ -113,4 +113,33 @@ public class ParsersTest {
         
         assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
     }
+    
+    @Test
+    public void citeGenerationCorrectWithOtherThanMisc() {
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
+        expResult.setReferenceCite("V06");
+        Parsers.generateCite(toBeParsed, new HashSet());
+        assertEquals(expResult.getReferenceCite(), toBeParsed.getReferenceCite());
+    }
+    
+    @Test
+    public void citeGenerationCorrectWithMisc() {
+        Reference toBeParsed = new Reference();
+        toBeParsed.setType(ReferenceType.MISC);
+        toBeParsed.setAuthor("Pekka");
+        toBeParsed.setNote("lolz");
+        Parsers.generateCite(toBeParsed, new HashSet());
+        assertEquals("Pekka", toBeParsed.getReferenceCite());
+    }
+    
+    @Test
+    public void citeGenerationCorrectWithMiscWhenMissingAuthor() {
+        Reference toBeParsed = new Reference();
+        toBeParsed.setType(ReferenceType.MISC);
+        toBeParsed.setNote("lolz");
+        Parsers.nollaaLaskuri();
+        Parsers.generateCite(toBeParsed, new HashSet());
+        assertEquals("1", toBeParsed.getReferenceCite());
+    }
 }

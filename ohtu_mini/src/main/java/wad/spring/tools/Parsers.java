@@ -81,11 +81,12 @@ public class Parsers {
             String citeCode = "";
             if (toBeGenerated.getAuthor() != null && !toBeGenerated.getAuthor().isEmpty()) {
                 citeCode += toBeGenerated.getAuthor();
-            }
-            toBeGenerated.setReferenceCite(citeCode);
+                toBeGenerated.setReferenceCite(citeCode);
 
             if (codes.add(citeCode)) {
                 return toBeGenerated;
+            }
+            
             } else {
                 citeCode = citeCode + citelaskuri;
                 citelaskuri++;
@@ -94,5 +95,9 @@ public class Parsers {
             }
 
             return toBeGenerated;
+    }
+    
+    public static void nollaaLaskuri() {
+        citelaskuri = (long) 1;
     }
 }

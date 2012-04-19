@@ -30,9 +30,9 @@ public class BibtexServiceImpl implements BibtexService {
         HashSet citeCodes = new HashSet();
 
         for (int i = 0; i < allReferences.size(); i++) {
+            Parsers.generateCite(allReferences.get(i), citeCodes);
             Parsers.parsePageNumber(allReferences.get(i));
             Parsers.parseScandit(allReferences.get(i));
-            Parsers.generateCite(allReferences.get(i), citeCodes);
         }
 
         return generateString(allReferences);
