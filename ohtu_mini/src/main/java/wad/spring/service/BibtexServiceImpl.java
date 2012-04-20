@@ -19,10 +19,14 @@ import wad.spring.domain.Reference;
  */
 @Service
 public class BibtexServiceImpl implements BibtexService {
-
-    @Autowired
     ReferenceRepository referenceRepository;
-
+    
+    
+    @Autowired
+    public BibtexServiceImpl(ReferenceRepository referenceRepository) {
+        this.referenceRepository = referenceRepository;
+    }
+    
     @Override
     public String generateBibtex() {
 
@@ -38,7 +42,7 @@ public class BibtexServiceImpl implements BibtexService {
         return generateString(allReferences);
     }
 
-    public static String generateString(List<Reference> allReferences) {
+    private static String generateString(List<Reference> allReferences) {
         String palautettava = "";
 
         for (int i = 0; i < allReferences.size(); i++) {
@@ -49,4 +53,6 @@ public class BibtexServiceImpl implements BibtexService {
 
         return palautettava;
     }
+    
+    
 }

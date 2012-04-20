@@ -103,6 +103,7 @@ public class ParsersTest {
     
     @Test
     public void testGenerateCiteWithSameCite(){
+        Parsers.nollaaLaskuri();
         System.out.println("Generate Cite with same cite");
         Reference toBeParsed = generateParsittava();
         Reference expResult = generateValmis();

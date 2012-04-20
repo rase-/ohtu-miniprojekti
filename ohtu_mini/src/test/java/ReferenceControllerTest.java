@@ -48,11 +48,13 @@ public class ReferenceControllerTest {
     
     @Test
     public void showBibtexPageRedirectsCorrectlyWithFormAttribute() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("reference/bibtex")).
+        mockMvc.perform(MockMvcRequestBuilders.get("/reference/bibtex")).
                 andExpect(MockMvcResultMatchers.status().isOk()).
                 andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/view/bibtex.jsp")).
                 andExpect(MockMvcResultMatchers.model().size(1)).
                 andExpect(MockMvcResultMatchers.model().attributeExists("fileForm"));
     }
+    
+    
     
 }
