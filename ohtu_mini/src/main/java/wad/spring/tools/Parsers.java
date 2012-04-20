@@ -29,9 +29,6 @@ public class Parsers {
         if (toBeParsed.getNote() != null) {
             toBeParsed.setNote(skandi(toBeParsed.getNote()));
         }
-        if (toBeParsed.getAddress() != null) {
-            toBeParsed.setAddress(skandi(toBeParsed.getAddress()));
-        }
         if (toBeParsed.getJournal() != null) {
             toBeParsed.setJournal(skandi(toBeParsed.getJournal()));
         }

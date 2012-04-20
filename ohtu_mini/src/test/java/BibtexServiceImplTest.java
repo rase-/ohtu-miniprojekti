@@ -48,6 +48,7 @@ public class BibtexServiceImplTest {
     @After
     public void tearDown() {
     }
+    
 
     @Test
     public void generateBibtexGeneratesCorrectlyWithOneReference() {
@@ -57,6 +58,7 @@ public class BibtexServiceImplTest {
     
     @Test
     public void generateBibtexGeneratesCorrectlyTwoReferencesThatAreSameWIthIncrementedReferenceCite() {
+        Parsers.nollaaLaskuri();
         Reference first = generateParsittava();
         Reference second = generateParsittava();
         Reference changedReady = generateValmis();
