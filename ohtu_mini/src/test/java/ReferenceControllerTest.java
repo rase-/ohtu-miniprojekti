@@ -7,6 +7,7 @@ import org.springframework.test.web.server.MockMvc;
 import org.springframework.test.web.server.request.MockMvcRequestBuilders;
 import org.springframework.test.web.server.result.MockMvcResultMatchers;
 import org.springframework.test.web.server.setup.MockMvcBuilders;
+import wad.spring.form.FileForm;
 
 /**
  *
@@ -55,6 +56,13 @@ public class ReferenceControllerTest {
                 andExpect(MockMvcResultMatchers.model().attributeExists("fileForm"));
     }
     
-    
+//    @Test
+//    public void generateBibtexContentTypeIsOctetStream() throws Exception {
+//        FileForm fileForm = new FileForm();
+//        fileForm.setFilename("lolz");
+//        mockMvc.perform(MockMvcRequestBuilders.post("/reference/bibtex/", fileForm)).
+//                andExpect(MockMvcResultMatchers.status().isOk()).
+//                andExpect(MockMvcResultMatchers.content().type("application/octet-stream"));
+//    }
     
 }

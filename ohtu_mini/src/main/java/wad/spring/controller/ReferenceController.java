@@ -80,7 +80,7 @@ public class ReferenceController {
 
     @RequestMapping(value = "reference/bibtex", method = RequestMethod.POST)
     public String generateBibtex(@Valid @ModelAttribute FileForm fileForm, BindingResult result, Model model, HttpServletResponse response) throws IOException {
-        if (result.hasErrors()) {
+        if(result.hasErrors()) {
             return "bibtex";
         }
         response.setContentType("application/octet-stream");
@@ -90,5 +90,5 @@ public class ReferenceController {
         response.flushBuffer();
         return "redirect:/home";
     }
-//}
+    
 }
