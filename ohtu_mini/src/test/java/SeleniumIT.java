@@ -43,6 +43,8 @@ public class SeleniumIT {
         element = driver.findElement(By.name("title"));
         element.sendKeys("Trolls of Science");
         element = driver.findElement(By.name("submit"));
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1992");
         element.submit();
         testable = driver.getPageSource().contains("pekka");
         Assert.assertEquals(true, testable);       
@@ -58,6 +60,8 @@ public class SeleniumIT {
         element.sendKeys("");
         element = driver.findElement(By.name("title"));
         element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1992");
         element = driver.findElement(By.name("submit"));
         element.submit();
         testable = driver.getPageSource().contains("pekka");
@@ -74,6 +78,8 @@ public class SeleniumIT {
         element.sendKeys("pekka");
         element = driver.findElement(By.name("title"));
         element.sendKeys("");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1992");
         element = driver.findElement(By.name("submit"));
         element.submit();
         testable = driver.getPageSource().contains("Trolls of Science");
@@ -91,6 +97,8 @@ public class SeleniumIT {
         element.sendKeys("Trolls of Science");
         element = driver.findElement(By.name("pages"));
         element.sendKeys("123-456");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1992");
         element = driver.findElement(By.name("submit"));
         element.submit();
         testable = driver.getPageSource().contains("123-456");
@@ -98,7 +106,7 @@ public class SeleniumIT {
     }
         
     @Test
-    public void creationSuccessfulWithYear() {
+    public void creationNotSuccessfulWithoutYear() {
         driver = new HtmlUnitDriver();
         driver.get(address);
         element = driver.findElement(By.linkText("Add"));
@@ -107,12 +115,10 @@ public class SeleniumIT {
         element.sendKeys("pekka");
         element = driver.findElement(By.name("title"));
         element.sendKeys("Trolls of Science");
-        element = driver.findElement(By.name("publishingYear"));
-        element.sendKeys("2012");
         element = driver.findElement(By.name("submit"));
         element.submit();
         testable = driver.getPageSource().contains("2012");
-        Assert.assertEquals(true, testable); 
+        Assert.assertFalse(testable);
     }
     
     @Test

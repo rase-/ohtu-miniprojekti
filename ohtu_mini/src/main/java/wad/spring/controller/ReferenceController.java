@@ -49,10 +49,6 @@ public class ReferenceController {
             return "reference";
         }
         
-        if (reference.getType().equals(ReferenceType.MISC) && reference.getAuthor().isEmpty()) {
-            return "reference";
-        }
-        
         
         referenceService.addReference(reference);
         return "redirect:/home";
@@ -94,20 +90,5 @@ public class ReferenceController {
         response.flushBuffer();
         return "redirect:/home";
     }
-//    @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
-//public void getFile(
-//    @PathVariable("file_name") String fileName, 
-//    HttpServletResponse response) {
-//    try {
-//      // get your file as InputStream
-//      InputStream is = ...;
-//      // copy it to response's OutputStream
-//      IOUtils.copy(is, response.getOutputStream());
-//      response.flushBuffer();
-//    } catch (IOException ex) {
-//      log.info("Error writing file to output stream. Filename was '" + fileName + "'");
-//      throw new RuntimeException("IOError writing file to output stream");
-//    }
-//
 //}
 }

@@ -188,9 +188,13 @@ public class Reference implements Serializable {
         if (this.type == null) {
             return "Virhe! Ei tyyppiä!";
         }
-        System.out.println("Before first");
+        
+        if (this.referenceCite == null) {
+            this.referenceCite = "";
+        }
+        
         String palautettava = "@" + this.type.toString().toLowerCase() + "{" + this.referenceCite + ",\n";
-        System.out.println("Past first");
+        
         if (author != null && !author.isEmpty()) {
             palautettava += "author = {" + this.author + "},\n";
 
