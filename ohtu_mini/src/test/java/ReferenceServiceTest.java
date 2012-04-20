@@ -80,9 +80,9 @@ public class ReferenceServiceTest {
     public void deletionOfReferenceDecrementsAmount() {
         int firstAmount = referenceService.listAllReferences().size();
         Reference r = new Reference();
-        r.setId(Long.valueOf("1"));
+        r.setId(Long.valueOf(1));
         referenceService.addReference(r);
-        referenceService.deleteReference(Long.valueOf("1"));
+        referenceService.deleteReference(Long.valueOf(1));
         Assert.assertEquals(firstAmount, referenceService.listAllReferences().size());
     }
     
