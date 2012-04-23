@@ -10,7 +10,7 @@ public class Tester {
     public static void main(String[] args) {
         WebDriver driver = new HtmlUnitDriver();
 
-        driver.get("http://localhost:8080/ohtu_mini");
+        driver.get("http://localhost:8080/ohtu_mini/");
         System.out.println( driver.getPageSource() );
         WebElement element = driver.findElement(By.linkText("Add"));       
         element.click(); 
@@ -26,6 +26,8 @@ public class Tester {
         element.sendKeys("1881");
         element = driver.findElement(By.name("submit"));
         element.submit();
+        element = driver.findElement(By.linkText("Add"));       
+        element.click(); 
         
         element = driver.findElement(By.name("author"));
         element.sendKeys("matti");
@@ -35,6 +37,8 @@ public class Tester {
         element.sendKeys("1881");
         element = driver.findElement(By.name("submit"));
         element.submit();
+        element = driver.findElement(By.linkText("Add"));       
+        element.click(); 
         
         element = driver.findElement(By.name("author"));
         element.sendKeys("seppo");
@@ -44,6 +48,9 @@ public class Tester {
         element.sendKeys("1881");
         element = driver.findElement(By.name("submit"));
         element.submit();
+        element = driver.findElement(By.linkText("Add"));       
+        element.click(); 
+        
         
         element = driver.findElement(By.name("author"));
         element.sendKeys("trolli");
@@ -53,6 +60,9 @@ public class Tester {
         element.sendKeys("1881");
         element = driver.findElement(By.name("submit"));
         element.submit();
+        element = driver.findElement(By.linkText("Add"));       
+        element.click(); 
+        
         
         element = driver.findElement(By.name("author"));
         element.sendKeys("kolli");
@@ -62,6 +72,8 @@ public class Tester {
         element.sendKeys("1881");
         element = driver.findElement(By.name("submit"));
         element.submit();
+        element = driver.findElement(By.linkText("Add"));       
+        element.click(); 
         
         element = driver.findElement(By.name("author"));
         element.sendKeys("aapeli");
@@ -71,7 +83,7 @@ public class Tester {
         element.sendKeys("1881");
         element = driver.findElement(By.name("submit"));
         element.submit();
-        
+       
           
  
         

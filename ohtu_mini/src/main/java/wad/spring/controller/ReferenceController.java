@@ -33,13 +33,20 @@ public class ReferenceController {
 
     @RequestMapping("*/**")
     public String homeSite(Model model) {
-        model.addAttribute("references", referenceService.listAllReferences());
+     
         return "home";
     }
 
     @RequestMapping("*")
     public String alsoHome(Model model) {
+      
+        return "home";
+    }
+    
+    @RequestMapping(value = "home", method=RequestMethod.GET)
+    public String Home(Model model){
         model.addAttribute("references", referenceService.listAllReferences());
+        model.addAttribute("findByTag", new TagForm());
         return "home";
     }
 
@@ -113,14 +120,14 @@ public class ReferenceController {
     }
     
     
-    @RequestMapping(value = "reference/findByTag" , method = RequestMethod.POST)
+    @RequestMapping(value = "findByTag" , method = RequestMethod.POST)
     public String findReferenceByTag(@Valid @ModelAttribute TagForm tagform, BindingResult result, Model model){
          if (result.hasErrors()){
-         return "ListAll";
+         return "listTagged";
          }    
         
          model.addAttribute("references", referenceService.listByTag(tagform.getTag()));
-        return "ListAll";
+        return "listTagged";
     }
     
 }

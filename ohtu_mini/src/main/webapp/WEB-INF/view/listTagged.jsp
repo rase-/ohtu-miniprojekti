@@ -1,5 +1,4 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,16 +7,7 @@
         <title>The Vihavainen BibTeX service</title>
     </head>
     <body>
-        <h1>The Vihavainen BibTeX - Reference service -- Le Home de Arto Vihavainen</h1>
-        <p><a href="<c:url value="/reference"/>">Add</a> a reference</p>
-        <p><a href="<c:url value="/reference/all"/>">List all</a> references</p> 
-        
-         <form:form commandName="findByTag" action="findByTag" method="POST">
-         Find references by tag <form:input path="tag" /><form:errors path="tag" />
-          <input type="submit" name="submit" value="etsi"/>
-         </form:form>
-    
-        <p><a href=<c:url value="/reference/bibtex" />>Generate BibTeX</a></p>
+        <h1>Tagged references</h1>
         <c:forEach var="reference" items="${references}">
 
             <p>${reference.type}: <c:if test="${not empty reference.author}">Author: ${reference.author}</c:if> <c:if test="${not empty reference.title}">, Title: ${reference.title}</c:if><c:if test="${not empty reference.publishingYear}">, Year: ${reference.publishingYear}</c:if><c:if test="${not empty reference.publisher}">, Publisher: ${reference.publisher}</c:if><c:if test="${not empty reference.pages}">, 
