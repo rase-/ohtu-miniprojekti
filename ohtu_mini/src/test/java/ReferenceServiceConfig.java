@@ -7,6 +7,7 @@
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import wad.spring.service.ReferenceService;
+import wad.spring.service.ReferenceServiceImpl;
 
 /**
  *
