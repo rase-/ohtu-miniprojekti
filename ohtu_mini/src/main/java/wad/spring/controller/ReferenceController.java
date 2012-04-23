@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import wad.spring.domain.Reference;
 import wad.spring.domain.ReferenceType;
 import wad.spring.form.FileForm;
+import wad.spring.form.TagForm;
 import wad.spring.service.BibtexService;
 import wad.spring.service.ReferenceService;
 
@@ -88,6 +89,26 @@ public class ReferenceController {
         InputStream is = new StringBufferInputStream(bibtexService.generateBibtex());
         IOUtils.copy(is, response.getOutputStream());
         response.flushBuffer();
+        return "redirect:/home";
+    }
+    
+    @RequestMapping(value = "reference/{referenceId}/tag", method = RequestMethod.GET)
+    public String showTaggingForm(@PathVariable Long referenceId, Model model) {
+        model.addAttribute("tagForm", new TagForm());
+        model.addAttribute("reference", referenceService.findOne(referenceId));
+        return "tag";
+    }
+    
+    @RequestMapping(value = "reference/{referenceId}/tag", method = RequestMethod.POST)
+    public String tagReference(@PathVariable Long referenceId, @Valid @ModelAttribute TagForm tagForm, BindingResult result, Model model) {
+        Reference reference = referenceService.findOne(referenceId);
+        if (result.hasErrors()) {
+            model.addAttribute("reference", reference);
+            return "tag";
+        }
+        
+        referenceService.tagReference(reference, tagForm.getTag());
+        System.out.println("Controller: " + tagForm.getTag());
         return "redirect:/home";
     }
     

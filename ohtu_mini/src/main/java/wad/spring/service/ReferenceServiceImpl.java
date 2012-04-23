@@ -46,9 +46,18 @@ public class ReferenceServiceImpl implements ReferenceService {
         return referenceRepository.findAll();
     }
     
+
+    @Transactional(readOnly = true)
+    public Reference findOne(Long id) {
+        return referenceRepository.findOne(id);
+    }
+    
     @Override
-    @Transactional (readOnly =true)
-    public List<Reference>listByTag(String tag){
-        return referenceRepository.findByTag(tag);
+    @Transactional
+    public void tagReference(Reference reference, String tag) {
+        reference.setTag(tag);
+        System.out.println("Service: " + tag);
+        referenceRepository.save(reference);
+
     }
 }

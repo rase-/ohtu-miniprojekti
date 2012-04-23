@@ -7,6 +7,7 @@
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wad.spring.domain.Reference;
 import wad.spring.repository.ReferenceRepository;
 import wad.spring.service.ReferenceService;
@@ -41,5 +42,16 @@ public class ReferenceServiceImpl implements ReferenceService {
     @Override
     public void deleteReference(Long id) {
         referenceRepo.delete(id);
+    }
+
+    @Override
+    public Reference findOne(Long id) {
+        return referenceRepo.findOne(id);
+    }
+
+    @Override
+    public void tagReference(Reference reference, String tag) {
+        reference.setTag(tag);
+        referenceRepo.save(reference);
     }
 }
