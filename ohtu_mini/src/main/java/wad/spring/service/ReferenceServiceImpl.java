@@ -48,7 +48,7 @@ public class ReferenceServiceImpl implements ReferenceService {
     
     @Override
     @Transactional (readOnly =true)
-    public List<Reference>listByTag(){
-        return referenceRepository.findByTag();
+    public List<Reference>listByTag(String tag){
+        return referenceRepository.findByTag(tag);
     }
 }

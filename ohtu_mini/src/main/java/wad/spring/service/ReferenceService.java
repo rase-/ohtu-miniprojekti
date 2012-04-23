@@ -14,6 +14,6 @@ import wad.spring.domain.Reference;
 public interface ReferenceService {
     public void addReference(Reference reference);
     public List<Reference> listAllReferences();
-    public List<Reference> listByTag();
+    public List<Reference> listByTag(String tag);
     public void deleteReference(Long id);
 }
