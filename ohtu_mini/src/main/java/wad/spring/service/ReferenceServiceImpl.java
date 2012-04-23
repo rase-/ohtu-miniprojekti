@@ -17,10 +17,6 @@ public class ReferenceServiceImpl implements ReferenceService {
     
     ReferenceRepository referenceRepository;
     
-    public ReferenceServiceImpl() {
-        
-    }
-    
     @Autowired
     public ReferenceServiceImpl(ReferenceRepository referenceRepository) {
         this.referenceRepository = referenceRepository;
@@ -56,7 +52,6 @@ public class ReferenceServiceImpl implements ReferenceService {
     @Transactional
     public void tagReference(Reference reference, String tag) {
         reference.setTag(tag);
-        System.out.println("Service: " + tag);
         referenceRepository.save(reference);
 
     }

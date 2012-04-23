@@ -21,6 +21,7 @@ import wad.spring.repository.ReferenceRepository;
  */
 @Repository
 public class ReferenceRepositoryTestImpl implements ReferenceRepository {
+    
     ArrayList<Reference> references = new ArrayList<Reference>();
     
     
@@ -71,7 +72,7 @@ public class ReferenceRepositoryTestImpl implements ReferenceRepository {
     }
 
     @Override
-    public Reference save(Reference t) {
+    public Reference save(Reference t) {;
         references.add(t);
         return t;
     }
@@ -79,7 +80,7 @@ public class ReferenceRepositoryTestImpl implements ReferenceRepository {
     @Override
     public Reference findOne(Long id) {
         for (Reference r : references) {
-            if (r.getId() == id) {
+            if (r.getId().equals(id)) {
                 return r;
             }
         }

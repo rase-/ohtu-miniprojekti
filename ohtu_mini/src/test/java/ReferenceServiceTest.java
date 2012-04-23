@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import wad.spring.domain.Reference;
+import wad.spring.domain.ReferenceType;
 import wad.spring.service.ReferenceService;
 
 /**
@@ -56,6 +57,7 @@ public class ReferenceServiceTest {
     public void additionOfNewReferenceIncrementsTotalAmount() {
         int firstAmount = referenceService.listAllReferences().size();
         Reference reference = new Reference();
+        reference.setId(Long.valueOf(90));
         reference.setAuthor("Pekka");
         referenceService.addReference(reference);
         Assert.assertEquals(firstAmount + 1, referenceService.listAllReferences().size());
@@ -80,10 +82,22 @@ public class ReferenceServiceTest {
     public void deletionOfReferenceDecrementsAmount() {
         int firstAmount = referenceService.listAllReferences().size();
         Reference r = new Reference();
-        r.setId(Long.valueOf(1));
+        r.setId(Long.valueOf(10));
         referenceService.addReference(r);
         referenceService.deleteReference(Long.valueOf(1));
         Assert.assertEquals(firstAmount, referenceService.listAllReferences().size());
+    }
+    
+    @Test
+    public void taggingOfReferenceAddsTag() {
+        Reference r = new Reference();
+        r.setId(Long.valueOf(9000));
+        r.setAuthor("Lolz");
+        r.setType(ReferenceType.ARTICLE);
+        referenceService.addReference(r);
+        r = referenceService.findOne(Long.valueOf(9000));
+        referenceService.tagReference(r, "tagged");
+        assertEquals("tagged", referenceService.findOne(Long.valueOf(9000)).getTag());
     }
     
 }
