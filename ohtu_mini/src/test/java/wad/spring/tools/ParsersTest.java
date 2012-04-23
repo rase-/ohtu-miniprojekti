@@ -8,6 +8,7 @@ import java.util.HashSet;
 import org.junit.*;
 import static org.junit.Assert.*;
 import wad.spring.domain.Reference;
+import wad.spring.domain.ReferenceType;
 
 /**
  *
@@ -37,6 +38,7 @@ public class ParsersTest {
 
     public Reference generateParsittava(){
         Reference reference = new Reference();
+        reference.setType(ReferenceType.INPROCEEDINGS);
         reference.setAuthor("Vihavainen");
         reference.setBooktitle("Nörttien päivä");
         reference.setAddress("USA");
@@ -51,6 +53,7 @@ public class ParsersTest {
     
     public Reference generateValmis(){
         Reference reference = new Reference();
+        reference.setType(ReferenceType.INPROCEEDINGS);
         reference.setAuthor("Vihavainen");
         reference.setBooktitle("N\\\"{o}rttien p\\\"{a}iv\\\"{a}");
         reference.setAddress("USA");
@@ -98,8 +101,9 @@ public class ParsersTest {
         assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
     }
     
-       @Test
+    @Test
     public void testGenerateCiteWithSameCite(){
+        Parsers.nollaaLaskuri();
         System.out.println("Generate Cite with same cite");
         Reference toBeParsed = generateParsittava();
         Reference expResult = generateValmis();
@@ -109,5 +113,34 @@ public class ParsersTest {
         Reference result = Parsers.generateCite(toBeParsed, setti);
         
         assertEquals(expResult.getReferenceCite(), result.getReferenceCite()); 
+    }
+    
+    @Test
+    public void citeGenerationCorrectWithOtherThanMisc() {
+        Reference toBeParsed = generateParsittava();
+        Reference expResult = generateValmis();
+        expResult.setReferenceCite("V06");
+        Parsers.generateCite(toBeParsed, new HashSet());
+        assertEquals(expResult.getReferenceCite(), toBeParsed.getReferenceCite());
+    }
+    
+    @Test
+    public void citeGenerationCorrectWithMisc() {
+        Reference toBeParsed = new Reference();
+        toBeParsed.setType(ReferenceType.MISC);
+        toBeParsed.setAuthor("Pekka");
+        toBeParsed.setNote("lolz");
+        Parsers.generateCite(toBeParsed, new HashSet());
+        assertEquals("Pekka", toBeParsed.getReferenceCite());
+    }
+    
+    @Test
+    public void citeGenerationCorrectWithMiscWhenMissingAuthor() {
+        Reference toBeParsed = new Reference();
+        toBeParsed.setType(ReferenceType.MISC);
+        toBeParsed.setNote("lolz");
+        Parsers.nollaaLaskuri();
+        Parsers.generateCite(toBeParsed, new HashSet());
+        assertEquals("1", toBeParsed.getReferenceCite());
     }
 }

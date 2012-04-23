@@ -49,10 +49,6 @@ public class ReferenceController {
             return "reference";
         }
         
-        if (reference.getType().equals(ReferenceType.MISC) && reference.getAuthor().isEmpty()) {
-            return "reference";
-        }
-        
         
         referenceService.addReference(reference);
         return "redirect:/home";
@@ -84,11 +80,9 @@ public class ReferenceController {
 
     @RequestMapping(value = "reference/bibtex", method = RequestMethod.POST)
     public String generateBibtex(@Valid @ModelAttribute FileForm fileForm, BindingResult result, Model model, HttpServletResponse response) throws IOException {
-        if (result.hasErrors()) {
+        if(result.hasErrors()) {
             return "bibtex";
         }
-        model.addAttribute("filename", fileForm.getFilename());
-        model.addAttribute("bibtex", bibtexService.generateBibtex());
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment;filename=" + fileForm.getFilename() + ".bib");
         InputStream is = new StringBufferInputStream(bibtexService.generateBibtex());
@@ -96,20 +90,5 @@ public class ReferenceController {
         response.flushBuffer();
         return "redirect:/home";
     }
-//    @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
-//public void getFile(
-//    @PathVariable("file_name") String fileName, 
-//    HttpServletResponse response) {
-//    try {
-//      // get your file as InputStream
-//      InputStream is = ...;
-//      // copy it to response's OutputStream
-//      IOUtils.copy(is, response.getOutputStream());
-//      response.flushBuffer();
-//    } catch (IOException ex) {
-//      log.info("Error writing file to output stream. Filename was '" + fileName + "'");
-//      throw new RuntimeException("IOError writing file to output stream");
-//    }
-//
-//}
+    
 }

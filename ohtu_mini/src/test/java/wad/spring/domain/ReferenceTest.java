@@ -4,8 +4,10 @@
  */
 package wad.spring.domain;
 
+import java.util.HashSet;
 import org.junit.*;
 import static org.junit.Assert.*;
+import wad.spring.tools.Parsers;
 
 /**
  *
@@ -407,24 +409,20 @@ public class ReferenceTest {
         Reference instance = generateParsittava();
       
         
-        String expResult = "";
-        String result = instance.toString();
+        String expResult = "@book{V06,\nauthor = {Vihavainen},\ntitle = {ohjelmistotuotannon perusteet},\nyear = {2006},\n}";
+        String result = Parsers.generateCite(instance, new HashSet()).toString();
         System.out.println(instance.toString());
-        assertEquals(expResult, "");
+        assertEquals(expResult, result); //ei siis valmis
 
     }
     
        public Reference generateParsittava(){
         Reference reference = new Reference();
+        reference.setType(ReferenceType.BOOK);
         reference.setAuthor("Vihavainen");
-//        reference.setBooktitle("älpälä");
-        reference.setBooktitle("Nörttien päivä");
-        reference.setAddress("Osoite");
-        reference.setPublisher("julkaisija");
         reference.setTitle("ohjelmistotuotannon perusteet");
-        reference.setJournal("journal");
         reference.setPublishingYear("2006");
-        reference.setPages("3-7");
+        reference.setReferenceCite("V06");
         
         return reference;
     }

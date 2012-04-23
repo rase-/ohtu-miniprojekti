@@ -17,6 +17,8 @@ scenario "deletion successful", {
         element.sendKeys("testuser");
         element = driver.findElement(By.name("title"));
         element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1991");
         element = driver.findElement(By.name("submit"));
         element.submit();
         driver.get(serverAddress);
