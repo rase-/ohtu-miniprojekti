@@ -2,10 +2,13 @@ import wad.*
 import wad.spring.*
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.support.ui.Select;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
 
 description 'User can create a reference'
 
 serverAddress = "http://localhost:9090/";
+
 
 scenario "creation successful", {
     given 'command add a reference is selected', {
@@ -161,4 +164,5 @@ scenario "creation not successful when year typed wrong", {
         driver.getPageSource().contains("yearWrong").shouldBe false
     }
 }
+
 }
