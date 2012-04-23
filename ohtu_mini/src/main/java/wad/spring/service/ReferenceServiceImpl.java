@@ -60,4 +60,10 @@ public class ReferenceServiceImpl implements ReferenceService {
         referenceRepository.save(reference);
 
     }
+    
+    @Override
+    @Transactional (readOnly =true)
+    public List<Reference>listByTag(String tag){
+        return referenceRepository.findByTag(tag);
+    }
 }

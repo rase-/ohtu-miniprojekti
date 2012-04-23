@@ -54,4 +54,11 @@ public class ReferenceServiceImpl implements ReferenceService {
         reference.setTag(tag);
         referenceRepo.save(reference);
     }
+
+    @Override
+    public List<Reference> listByTag(String tag) {
+        return referenceRepo.findByTag(tag);
+    }
+    
+    
 }

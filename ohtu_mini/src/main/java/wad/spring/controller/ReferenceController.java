@@ -112,4 +112,15 @@ public class ReferenceController {
         return "redirect:/home";
     }
     
+    
+    @RequestMapping(value = "reference/findByTag" , method = RequestMethod.POST)
+    public String findReferenceByTag(@Valid @ModelAttribute TagForm tagform, BindingResult result, Model model){
+         if (result.hasErrors()){
+         return "ListAll";
+         }    
+        
+         model.addAttribute("references", referenceService.listByTag(tagform.getTag()));
+        return "ListAll";
+    }
+    
 }

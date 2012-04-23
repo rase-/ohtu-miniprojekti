@@ -120,5 +120,10 @@ public class ReferenceRepositoryTestImpl implements ReferenceRepository {
     public void deleteAll() {
         references.clear();
     }
+
+    @Override
+    public List<Reference> findByTag(String tag) {
+       return references;
+    }
     
 }
