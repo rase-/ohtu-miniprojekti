@@ -45,6 +45,7 @@ public class Reference implements Serializable {
     private int volume;
     private int number;
     private String referenceCite;
+    private String tag;
 
     public boolean equals(Object o) {
         if (o instanceof Reference) {
@@ -172,6 +173,14 @@ public class Reference implements Serializable {
         this.note = note;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+    
     public String toString() {
 //        String palautettava = "@" + this.type.toString().toLowerCase() + "{" + this.getReferenceCite() + ",\n"
 //                + "author = {" + this.author + "},\n"

@@ -5,7 +5,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 description 'User can create a reference'
 
-serverAddress = "http://localhost:9090";
+serverAddress = "http://localhost:9090/";
 
 scenario "creation successful", {
     given 'command add a reference is selected', {

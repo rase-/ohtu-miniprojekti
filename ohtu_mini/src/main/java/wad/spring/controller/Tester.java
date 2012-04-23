@@ -11,7 +11,7 @@ public class Tester {
         WebDriver driver = new HtmlUnitDriver();
 
         driver.get("http://localhost:8080/ohtu_mini");
-        System.out.println( driver.getPageSource() );
+        System.out.println( driver.getPageSource());
         WebElement element = driver.findElement(By.linkText("Add"));       
         element.click(); 
         
@@ -20,11 +20,58 @@ public class Tester {
         System.out.println( driver.getPageSource() );
         element = driver.findElement(By.name("author"));
         element.sendKeys("pekka");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("troll");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1881");
         element = driver.findElement(By.name("submit"));
         element.submit();
         
-        System.out.println("==");
-        System.out.println( driver.getPageSource() );
+        element = driver.findElement(By.name("author"));
+        element.sendKeys("matti");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("troll");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1881");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        
+        element = driver.findElement(By.name("author"));
+        element.sendKeys("seppo");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("troll");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1881");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        
+        element = driver.findElement(By.name("author"));
+        element.sendKeys("trolli");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("troll");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1881");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        
+        element = driver.findElement(By.name("author"));
+        element.sendKeys("kolli");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("troll");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1881");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        
+        element = driver.findElement(By.name("author"));
+        element.sendKeys("aapeli");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("troll");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1881");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+        
           
  
         

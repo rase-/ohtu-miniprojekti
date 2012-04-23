@@ -56,6 +56,15 @@ public class ReferenceControllerTest {
                 andExpect(MockMvcResultMatchers.model().attributeExists("fileForm"));
     }
     
+    @Test
+    public void showTaggingPageRedirectsCorrectlyWithTagForm() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/reference/1/tag")).
+                andExpect(MockMvcResultMatchers.status().isOk()).
+                andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/view/tag.jsp")).
+                andExpect(MockMvcResultMatchers.model().size(2)).
+                andExpect(MockMvcResultMatchers.model().attributeExists("tagForm"));
+    }
+    
 //    @Test
 //    public void generateBibtexContentTypeIsOctetStream() throws Exception {
 //        FileForm fileForm = new FileForm();
