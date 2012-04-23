@@ -45,4 +45,10 @@ public class ReferenceServiceImpl implements ReferenceService {
     public List<Reference> listAllReferences() {
         return referenceRepository.findAll();
     }
+    
+    @Override
+    @Transactional (readOnly =true)
+    public List<Reference>listByTag(){
+        return referenceRepository.findByTag();
+    }
 }

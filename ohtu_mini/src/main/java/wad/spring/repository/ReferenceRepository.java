@@ -4,6 +4,7 @@
  */
 package wad.spring.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import wad.spring.domain.Reference;
 
@@ -13,4 +14,8 @@ import wad.spring.domain.Reference;
  */
 public interface ReferenceRepository extends JpaRepository<Reference, Long> {
     Reference findByAuthor(String author);
+    List<Reference> findByTag(String tag);
+    
 }
+
+

@@ -180,8 +180,8 @@ public class Reference implements Serializable {
 
     public String toString(){
         String palautettava = "@ TYPE, \n author = {" + author +"}, \n title = { " +title +"} \n journal = "
-                             + "{"+journal+" } \n Volume" 
-                                ;
+                             + "{"+journal+" } \n Volume = {"+volume+"}, \n number = {"+number+"}, \n year = {"+publishingYear+"}, \n"
+                            + "pages = {"+pages+"}, \n publisher = {"+publisher+"}, \n address = {"+address+", \n";
         
         return palautettava;
     }
