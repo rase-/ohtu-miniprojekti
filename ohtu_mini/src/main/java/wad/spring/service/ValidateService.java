@@ -1,6 +1,6 @@
 package wad.spring.service;
 
-import java.lang.ref.Reference;
+import wad.spring.domain.Reference;
 import org.springframework.validation.BindingResult;
 
 public interface ValidateService {

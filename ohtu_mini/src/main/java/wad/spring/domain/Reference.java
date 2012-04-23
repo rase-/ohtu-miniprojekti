@@ -23,24 +23,14 @@ public class Reference implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private ReferenceType type;
-    @Pattern(regexp = "[^<>$%]+", message = "There has to be an author and it should not contain <>$%")
     private String author;
-    @NotNull
-    @Pattern(regexp = "[^<>$%]+", message = "There should be a title and it should not contain <>$%")
     private String title;
-    @Pattern(regexp = "[0-9]{4}", message = "Year should contain exactly 4 numbers and should not be left empty")
     private String publishingYear;
-    @Pattern(regexp = "[^<>$%]*", message = "Publisher should not contain <>$%")
     private String publisher;
-    @Pattern(regexp = "([0-9]+-{1}[0-9]+)?", message = "Pages should consist of a number, a line and a number")
     private String pages;
-    @Pattern(regexp = "[^<>$%]*", message = "Address should not contain <>$%")
     private String address;
-    @Pattern(regexp = "[^<>$%]*", message = "Booktitle should not contain <>$%")
     private String booktitle;
-    @Pattern(regexp = "[^<>$%]*", message = "Journal should not contain <>$%")
     private String journal;
-    @Pattern(regexp = "[^<>$%]*", message = "Note should not contain <>$%")
     private String note;
     private int volume;
     private int number;

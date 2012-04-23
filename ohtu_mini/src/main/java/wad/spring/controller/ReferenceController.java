@@ -18,6 +18,7 @@ import wad.spring.form.FileForm;
 import wad.spring.form.TagForm;
 import wad.spring.service.BibtexService;
 import wad.spring.service.ReferenceService;
+import wad.spring.service.ValidateService;
 
 /**
  *
@@ -30,7 +31,9 @@ public class ReferenceController {
     ReferenceService referenceService;
     @Autowired
     BibtexService bibtexService;
-
+    @Autowired
+    ValidateService validateService;
+    
     @RequestMapping("*/**")
     public String homeSite(Model model) {
         model.addAttribute("references", referenceService.listAllReferences());
@@ -46,11 +49,12 @@ public class ReferenceController {
     @RequestMapping(value = "reference", method = RequestMethod.POST)
     public String addReference(@Valid @ModelAttribute Reference reference, BindingResult result) {
  
-        if (!reference.getType().equals(ReferenceType.MISC) && result.hasErrors()) {
-            return "reference";
+        if (!reference.getType().equals(ReferenceType.MISC)) {
+            BindingResult temp = validateService.Validate(result, reference);
+            if(temp.hasErrors())
+                return "reference";
         }
-        
-        
+              
         referenceService.addReference(reference);
         return "redirect:/home";
     }
