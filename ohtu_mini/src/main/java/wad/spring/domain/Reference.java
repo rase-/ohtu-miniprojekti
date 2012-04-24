@@ -5,6 +5,7 @@
 package wad.spring.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,7 +36,7 @@ public class Reference implements Serializable {
     private int volume;
     private int number;
     private String referenceCite;
-    private String tag;
+    private List<String> tag;
 
     public boolean equals(Object o) {
         if (o instanceof Reference) {
@@ -163,11 +164,11 @@ public class Reference implements Serializable {
         this.note = note;
     }
 
-    public String getTag() {
+    public List<String> getTag() {
         return tag;
     }
 
-    public void setTag(String tag) {
+    public void setTag(List<String> tag) {
         this.tag = tag;
     }
     

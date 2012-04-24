@@ -94,10 +94,11 @@ public class ReferenceServiceTest {
         r.setId(Long.valueOf(9000));
         r.setAuthor("Lolz");
         r.setType(ReferenceType.ARTICLE);
+        r.setTag(new ArrayList<String>());
         referenceService.addReference(r);
         r = referenceService.findOne(Long.valueOf(9000));
         referenceService.tagReference(r, "tagged");
-        assertEquals("tagged", referenceService.findOne(Long.valueOf(9000)).getTag());
+        assertEquals("tagged", referenceService.findOne(Long.valueOf(9000)).getTag().get(0));
     }
     
 }

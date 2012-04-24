@@ -8,7 +8,11 @@
     </head>
     <body>
         <h1>Tag a reference</h1>
-        <p><c:if test="${not empty reference.tag}">Current tag: ${reference.tag}</c:if></p>
+        <p><c:if test="${not empty reference.tag}"><h2>Current tags</h2></c:if>
+        <c:forEach var="tag" items="${reference.tag}">
+            ${tag} <a href=<c:url value="/reference/${reference.id}/tag/${tag}/delete" />>delete</a><br />
+        </c:forEach>
+    </p>
         <form:form commandName="tagForm" action="${pageContext.request.contextPath}/reference/${reference.id}/tag" method="POST">
             <form:input path="tag" /><form:errors path="tag" /> <br />
             <input type="submit" name="submit" value="submit"/>
