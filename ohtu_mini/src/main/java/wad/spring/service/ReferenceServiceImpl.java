@@ -1,5 +1,6 @@
 package wad.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +15,12 @@ import wad.spring.repository.ReferenceRepository;
 @Service
 public class ReferenceServiceImpl implements ReferenceService {
 
-    
     ReferenceRepository referenceRepository;
-    
+
     @Autowired
     public ReferenceServiceImpl(ReferenceRepository referenceRepository) {
         this.referenceRepository = referenceRepository;
     }
-    
 
     @Override
     @Transactional
@@ -41,17 +40,32 @@ public class ReferenceServiceImpl implements ReferenceService {
     public List<Reference> listAllReferences() {
         return referenceRepository.findAll();
     }
-    
 
     @Transactional(readOnly = true)
     public Reference findOne(Long id) {
         return referenceRepository.findOne(id);
     }
-    
+
     @Override
     @Transactional
     public void tagReference(Reference reference, String tag) {
-        reference.setTag(tag);
+        System.out.println(reference);
+        System.out.println(reference.getTag());
+        System.out.println(tag);
+        if (reference.getTag() != null) {
+            reference.getTag().add(tag);
+        } else {
+            ArrayList<String> tags = new ArrayList<String>();
+            tags.add(tag);
+            reference.setTag(tags);
+        }
+        referenceRepository.save(reference);
+    }
+
+    @Override
+    public void deleteTag(Long referenceId, String tag) {
+        Reference reference = referenceRepository.findOne(referenceId);
+        reference.getTag().remove(tag);
         referenceRepository.save(reference);
 
     }

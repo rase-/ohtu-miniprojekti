@@ -18,4 +18,5 @@ public interface ReferenceService {
     public void deleteReference(Long id);
     public Reference findOne(Long id);
     public void tagReference(Reference reference, String tag);
+    public void deleteTag(Long referenceId, String tag);
 }

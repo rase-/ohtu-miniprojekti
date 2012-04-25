@@ -18,6 +18,7 @@ import wad.spring.form.FileForm;
 import wad.spring.form.TagForm;
 import wad.spring.service.BibtexService;
 import wad.spring.service.ReferenceService;
+import wad.spring.service.ValidateService;
 
 /**
  *
@@ -30,6 +31,8 @@ public class ReferenceController {
     ReferenceService referenceService;
     @Autowired
     BibtexService bibtexService;
+    @Autowired
+    ValidateService validateService;
 
     @RequestMapping("*/**")
     public String homeSite(Model model) {
@@ -52,12 +55,14 @@ public class ReferenceController {
 
     @RequestMapping(value = "reference", method = RequestMethod.POST)
     public String addReference(@Valid @ModelAttribute Reference reference, BindingResult result) {
- 
-        if (!reference.getType().equals(ReferenceType.MISC) && result.hasErrors()) {
-            return "reference";
+
+        if (!reference.getType().equals(ReferenceType.MISC)) {
+            BindingResult temp = validateService.Validate(result, reference);
+            if (temp.hasErrors()) {
+                return "reference";
+            }
         }
-        
-        
+
         referenceService.addReference(reference);
         return "redirect:/home";
     }
@@ -88,7 +93,7 @@ public class ReferenceController {
 
     @RequestMapping(value = "reference/bibtex", method = RequestMethod.POST)
     public String generateBibtex(@Valid @ModelAttribute FileForm fileForm, BindingResult result, Model model, HttpServletResponse response) throws IOException {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "bibtex";
         }
         response.setContentType("application/octet-stream");
@@ -98,14 +103,14 @@ public class ReferenceController {
         response.flushBuffer();
         return "redirect:/home";
     }
-    
+
     @RequestMapping(value = "reference/{referenceId}/tag", method = RequestMethod.GET)
     public String showTaggingForm(@PathVariable Long referenceId, Model model) {
         model.addAttribute("tagForm", new TagForm());
         model.addAttribute("reference", referenceService.findOne(referenceId));
         return "tag";
     }
-    
+
     @RequestMapping(value = "reference/{referenceId}/tag", method = RequestMethod.POST)
     public String tagReference(@PathVariable Long referenceId, @Valid @ModelAttribute TagForm tagForm, BindingResult result, Model model) {
         Reference reference = referenceService.findOne(referenceId);
@@ -113,11 +118,12 @@ public class ReferenceController {
             model.addAttribute("reference", reference);
             return "tag";
         }
-        
+
         referenceService.tagReference(reference, tagForm.getTag());
         System.out.println("Controller: " + tagForm.getTag());
         return "redirect:/home";
     }
+
     
     
     @RequestMapping(value = "findByTag" , method = RequestMethod.POST)
@@ -133,4 +139,12 @@ public class ReferenceController {
         return "listTagged";
     }
     
+
+
+    @RequestMapping("reference/{referenceId}/tag/{tag}/delete")
+    public String deleteTag(@PathVariable Long referenceId, @PathVariable String tag) {
+        referenceService.deleteTag(referenceId, tag);
+        return "redirect:/reference/" + referenceId + "/tag/" + tag;
+    }
+
 }
