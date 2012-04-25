@@ -123,7 +123,10 @@ public class ReferenceController {
     @RequestMapping(value = "findByTag" , method = RequestMethod.POST)
     public String findReferenceByTag(@Valid @ModelAttribute TagForm tagform, BindingResult result, Model model){
          if (result.hasErrors()){
-         return "listTagged";
+             
+            model.addAttribute("references", referenceService.listAllReferences());
+            model.addAttribute("findByTag", new TagForm());    
+         return "home";
          }    
         
          model.addAttribute("references", referenceService.listByTag(tagform.getTag()));
