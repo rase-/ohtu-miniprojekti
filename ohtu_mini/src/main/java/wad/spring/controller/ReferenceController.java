@@ -37,12 +37,14 @@ public class ReferenceController {
     @RequestMapping("*/**")
     public String homeSite(Model model) {
         model.addAttribute("references", referenceService.listAllReferences());
+        model.addAttribute("findByTag", new TagForm());
         return "home";
     }
 
     @RequestMapping("*")
     public String alsoHome(Model model) {
         model.addAttribute("references", referenceService.listAllReferences());
+        model.addAttribute("findByTag", new TagForm());
         return "home";
     }
 
@@ -121,5 +123,18 @@ public class ReferenceController {
     public String deleteTag(@PathVariable Long referenceId, @PathVariable String tag) {
         referenceService.deleteTag(referenceId, tag);
         return "redirect:/reference/" + referenceId + "/tag/" + tag;
+    }
+    
+    @RequestMapping(value = "findByTag", method = RequestMethod.POST)
+    public String findReferenceByTag(@Valid @ModelAttribute("findByTag") TagForm tagform, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+
+            model.addAttribute("references", referenceService.listAllReferences());
+            model.addAttribute("findByTag", new TagForm());
+            return "home";
+        }
+
+        model.addAttribute("references", referenceService.listByTag(tagform.getTag()));
+        return "listTagged";
     }
 }

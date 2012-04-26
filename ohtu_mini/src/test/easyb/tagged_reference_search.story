@@ -7,10 +7,11 @@ description 'User can tag and untag a reference'
 
 serverAddress = "http://localhost:9090/";
 
-scenario "Tagging successful", {
-    given 'tagging is selected for first item listed', {
+scenario "Search successful", {
+    given 'Some references are tagged', {
         driver = new HtmlUnitDriver();
         driver.get(serverAddress);
+
         element = driver.findElement(By.linkText("Add"));
         element.click();
         element = driver.findElement(By.name("author"));
@@ -26,39 +27,24 @@ scenario "Tagging successful", {
         element = driver.findElement(By.linkText("tag"));
         element.click();
         
-    }
-    when 'proper tag is inserted', {
         element = driver.findElement(By.name("tag"));
-        element.sendKeys("tagtest");
+        element.sendKeys("searchtest");
         element = driver.findElement(By.name("submit"));
         element.submit();
-    }
-    then 'tag is visible', {
-        driver.get(serverAddress)
-        driver.getPageSource().contains("tagtest").shouldBe true
-    }
-}
 
-scenario "Untagging successful", {
-    given 'tagging is selected for first item listed', {
-        driver = new HtmlUnitDriver();
-        driver.get(serverAddress);
-        element = driver.findElement(By.linkText("tag"));
-        element.click();
         
+    }
+    when 'proper tag is inserted to search field', {
+        driver.get(serverAddress);
         element = driver.findElement(By.name("tag"));
-        element.sendKeys("deletetest");
+        element.sendKeys("searchtest");
         element = driver.findElement(By.name("submit"));
         element.submit();
     }
-    when 'tag is deleted', {
-        element = driver.findElement(By.linkText("delete"));
-        element.click();
-    }
-    then 'tag is not visible', {
-        driver.getPageSource().contains("deletetest").shouldBe false
+    then 'proper references can be found', {
+        driver.get(serverAddress)
+        driver.getPageSource().contains("searchtest").shouldBe true
     }
 }
-
 
 
