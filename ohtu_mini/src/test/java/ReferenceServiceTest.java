@@ -143,4 +143,36 @@ public class ReferenceServiceTest {
         assertFalse(referenceService.findOne(Long.valueOf(9003)).getTag().contains("tagged"));
     }
     
+    @Test
+    public void searchReturnsOnlyReferencesWithMatchingTag() {
+        Reference r = new Reference();
+        r.setId(Long.valueOf(9009));
+        r.setAuthor("Lolz");
+        r.setType(ReferenceType.ARTICLE);
+        r.setTag(new ArrayList<String>());
+        referenceService.addReference(r);
+        r = referenceService.findOne(Long.valueOf(9009));
+        referenceService.tagReference(r, "search");
+        Reference l = new Reference();
+        l.setId(Long.valueOf(9010));
+        l.setAuthor("Lolz");
+        l.setType(ReferenceType.ARTICLE);
+        l.setTag(new ArrayList<String>());
+        referenceService.addReference(l);
+        l = referenceService.findOne(Long.valueOf(9010));
+        referenceService.tagReference(l, "search");
+        Reference x = new Reference();
+        x.setId(Long.valueOf(9011));
+        x.setAuthor("Lolz");
+        x.setType(ReferenceType.ARTICLE);
+        x.setTag(new ArrayList<String>());
+        referenceService.addReference(x);
+        x = referenceService.findOne(Long.valueOf(9011));
+        referenceService.tagReference(x, "something else");
+        
+        for (Reference ref : referenceService.listByTag("search")) {
+            assertTrue(ref.getTag().contains("search"));
+        }
+    }
+    
 }

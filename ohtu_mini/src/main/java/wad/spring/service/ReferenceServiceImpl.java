@@ -71,12 +71,12 @@ public class ReferenceServiceImpl implements ReferenceService {
     }
     
     @Override
-    @Transactional (readOnly =true)
+    @Transactional(readOnly = true)
     public List<Reference>listByTag(String tag){
         List<Reference> allReferences = referenceRepository.findAll();
         List<Reference> withCorrectTag = new ArrayList<Reference>();
         for (Reference r : allReferences) {
-            if (r.getTag().contains(tag)) {
+            if (r.getTag() != null && r.getTag().contains(tag)) {
                 withCorrectTag.add(r);
             }
         }
