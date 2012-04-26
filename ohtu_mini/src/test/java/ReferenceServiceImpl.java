@@ -49,8 +49,8 @@ public class ReferenceServiceImpl implements ReferenceService {
         return referenceRepo.findOne(id);
     }
 
-    @Override
-    public void tagReference(Reference reference, String tag) {
+
+    public void tagReference(Reference reference, List tag) {
         reference.setTag(tag);
         referenceRepo.save(reference);
     }
@@ -58,6 +58,16 @@ public class ReferenceServiceImpl implements ReferenceService {
     @Override
     public List<Reference> listByTag(String tag) {
         return referenceRepo.findByTag(tag);
+    }
+
+    @Override
+    public void tagReference(Reference reference, String tag) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteTag(Long referenceId, String tag) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     
