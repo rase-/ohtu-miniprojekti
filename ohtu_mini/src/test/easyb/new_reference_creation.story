@@ -3,12 +3,35 @@ import wad.spring.*
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
 
 description 'User can create a reference'
 
 serverAddress = "http://localhost:9090/";
 
+ scenario "creation successful with misc", {
+    given 'command add a reference is selected', {
+        driver = new HtmlUnitDriver();
+        driver.get(serverAddress);
+        element = driver.findElement(By.linkText("Add"));    
+        element.click();       
+    }
+    when 'article data entered', {
+        Select select = new Select(driver.findElement(By.id("type")));
+        select.selectByValue("MISC");
+        element = driver.findElement(By.name("author"));
+        element.sendKeys("PATROLOLOLOLOLOLOLOLO");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("Trolls of Science");
+        element = driver.findElement(By.name("publishingYear"));
+        element.sendKeys("1991");
+        element = driver.findElement(By.name("submit"));
+        element.submit();
+    }
+    then 'new reference has been registered to system', {
+        driver.get(serverAddress)
+        driver.getPageSource().contains("PATROLOLOLOLOLOLOLOLO").shouldBe true
+    }
+}
 
 scenario "creation successful", {
     given 'command add a reference is selected', {
