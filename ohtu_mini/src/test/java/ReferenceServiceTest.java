@@ -101,4 +101,46 @@ public class ReferenceServiceTest {
         assertEquals("tagged", referenceService.findOne(Long.valueOf(9000)).getTag().get(0));
     }
     
+    @Test
+    public void addingTagIncreasesTagAmount() {
+        Reference r = new Reference();
+        r.setId(Long.valueOf(9001));
+        r.setAuthor("Lolz");
+        r.setType(ReferenceType.ARTICLE);
+        r.setTag(new ArrayList<String>());
+        referenceService.addReference(r);
+        r = referenceService.findOne(Long.valueOf(9001));
+        referenceService.tagReference(r, "tagged");
+        assertEquals(1, referenceService.findOne(Long.valueOf(9001)).getTag().size());
+        
+    }
+    
+    @Test
+    public void deletionOfTagDecrementsAmount() {
+        Reference r = new Reference();
+        r.setId(Long.valueOf(9002));
+        r.setAuthor("Lolz");
+        r.setType(ReferenceType.ARTICLE);
+        r.setTag(new ArrayList<String>());
+        referenceService.addReference(r);
+        r = referenceService.findOne(Long.valueOf(9002));
+        referenceService.tagReference(r, "tagged");
+        referenceService.deleteTag(Long.valueOf(9002), "tagged");
+        assertEquals(0, referenceService.findOne(Long.valueOf(9002)).getTag().size());
+    }
+    
+    @Test
+    public void deletedTagCanNotBeFoundFromTags() {
+        Reference r = new Reference();
+        r.setId(Long.valueOf(9003));
+        r.setAuthor("Lolz");
+        r.setType(ReferenceType.ARTICLE);
+        r.setTag(new ArrayList<String>());
+        referenceService.addReference(r);
+        r = referenceService.findOne(Long.valueOf(9003));
+        referenceService.tagReference(r, "tagged");
+        referenceService.deleteTag(Long.valueOf(9003), "tagged");
+        assertFalse(referenceService.findOne(Long.valueOf(9003)).getTag().contains("tagged"));
+    }
+    
 }

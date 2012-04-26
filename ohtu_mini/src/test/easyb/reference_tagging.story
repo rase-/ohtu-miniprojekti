@@ -45,16 +45,16 @@ scenario "Untagging successful", {
         driver.get(serverAddress);
         element = driver.findElement(By.linkText("tag"));
         element.click();
+        element = driver.findElement(By.linkText("delete"));
+        element.click();
     }
-    when 'proper tag is inserted (empty)', {
-        element = driver.findElement(By.name("tag"));
-        element.sendKeys("");
-        element = driver.findElement(By.name("submit"));
-        element.submit();
+    when 'tag is deleted', {
+        element = driver.findElement(By.linkText("delete"));
+        element.click();
     }
     then 'tag is not visible', {
         driver.get(serverAddress)
-        driver.getPageSource().contains("tagtest").shouldBe true
+        driver.getPageSource().contains("tagtest").shouldBe false
     }
 }
 
